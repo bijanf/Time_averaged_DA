@@ -1,0 +1,63 @@
+/*!
+\page code_descript Code description
+
+simulation_list should be sent by das_compute.sh
+
+__Simulation launching__
+- To get a rough estimate of the computation time of a simulation first run it with verity=0.
+
+__Run sets__
+- First parameter is the fastest.
+- cycle_lenght should be typically in the slow position.  
+- To minimize latency time when producing a run set, the first parameter span length should be integer multiple of the number of cpus.
+
+
+
+- Run production (Fortran)
+- Run Evaluation (NCL)
+
+---
+
+
+__Main high level scripts__
+- das.sh
+- run.sh
+- run_set.sh
+- run_set_diff.sh
+- run_set_bunch.sh
+- copy_code_in.sh
+
+__Documentation files__
+- devel_info.txt
+- readme.txt
+
+
+Experiment parameters are divided into:
+- run_free_pars
+  Parameters needed to perform experiments not involving DA.
+- run_assi_pars
+  Additional parameters needed to perform DA experiments.
+
+@note a DA experiment (run_assi) needs to be consistent with its
+corresponding free experiment (run_free) therefore a one directional
+parameter dependency exist between them.
+
+- dependency chain view-> docu-> plot_assi-> plot_free added.
+
+Comments
+- Free runs raw output (which migth be big) is always kept in hard-drive, since assi runs need this info. 
+
+Known Issues
+- For the sake of saving hard drive, all the data is stored in single precision but the computations are done in double precision. This strategy I copied from Miyoshi and according to S. Reich it must just introduce some noise due to double-single precision rounding.
+- Floating point underflow currently not considered as a sign of filter divergence
+- NCL plot contouring is very sensitive to NaNs. Contour holes are bigger than NaN areas.
+- Initially, get_config function loaded the configuration of the runs into independent variables and this seemed to be producing a info leakage. This bug was attempted to be removed by encapsulating this info into the associative array "cfg".
+- NCL Quirk (Order this info and articulate it with call_ncl function)
+  - see "http://www.ncl.ucar.edu/Support/talk_archives/2010/2437.html"
+  - "yes | script.sh" combination makes NCL get crazy occasionally.
+  - adding an "exit" statement as the very last physical line of the NCL script seems to help 
+- Computing time estimator is stronly overestimating. Compilation, computing and postprecessing times should be considered independently.
+- Doxygen is no longer creating Fortran modules section.
+- Ocasionally some scripts fail to see files (run_crashed.cfg) and have permission problems. This is very strange and annoying!!!
+- For model L96_2s_mix, update_mode Augm1 and xlocal > 6 the filter ocasionally crashes. Not clear why.
+*/

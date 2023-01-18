@@ -1,0 +1,114 @@
+/*!
+
+\mainpage Time-averaged EnKF system for SPEEDY model
+
+@section intro Introduction
+This code performs time-averaged kalman filtering on the SPEEDY model.
+
+@note This code is based on the code [SpeedyLetkf](http://code.google.com/p/miyoshi/wiki/SpeedyLetkf) written by Takemasa Miyoshi. 
+Scripts were completely rewritten and and speedy-LETKF interface considerably changed.
+
+das-speedy command examples
+-------------------------------
+- Creation of new simulation datasets:
+  @verbatim ./das.sh --task=launch --sim_id="exp01" @endverbatim
+  @verbatim ./das.sh --task=queue_in_calc03 --sim_id="exp01" @endverbatim
+  @verbatim ./das.sh --task=queue_in_soroban --sim_id="exp01" @endverbatim
+  @verbatim ./das.sh --task=queue  --sim_list="exp{01..07}" @endverbatim
+- Statistics, plotting, documentation and view existing dataset:
+  @verbatim ./das.sh --task=stat dataset_dir @endverbatim
+  @verbatim ./das.sh --task=plot dataset_dir @endverbatim
+  @verbatim ./das.sh --task=docu dataset_dir @endverbatim
+  @verbatim ./das.sh --task=view dataset_dir @endverbatim
+- System test (should be run after every potentially harmfull code change).
+  @verbatim ./das.sh --task=test @endverbatim 
+- Documentation creator:
+  @verbatim ./das.sh --task=doxydoc @endverbatim
+
+@attention Commands above only work if executed from the folder "code"
+
+Versioning
+-----------
+- Version archive creation
+  @verbatim git init @endverbatim
+- Typical versioning step (only after succesfully running das_test)
+  - Add new files and remove not longer existing files
+  @verbatim git add -A @endverbatim
+  - Check what changed since last commit
+  @verbatim git status @endverbatim
+  - Save code snapshot
+  @verbatim git commit -a @endverbatim
+  - See development log
+  @verbatim git log @endverbatim
+- Revert "file" to the last commit  
+  @verbatim git checkout -- dir/file @endverbatim 
+- Other useful git commands:
+  @verbatim git commit --amend @endverbatim
+  @verbatim git commit --amend -m "New commit message" @endverbatim
+
+Monitoring
+------------
+- Show processes started from this terminal
+@verbatim ps T @endverbatim
+- kill processes by name pattern
+@verbatim pkill pid_pattern @endverbatim
+- kill processes by parent process
+@verbatim pkill -P parent_pid @endverbatim
+- kill processes by name
+@verbatim ps -ef|grep run_set| awk '{print $2}'|xargs kill @endverbatim
+- pstree
+
+Slurm Queueing
+----------------
+ Command  | Purpose                        
+---------:|:------------
+ sbatch   | submit a batch script
+ srun 	  | run a command via SLURM interactively
+ squeue   | list the jobs in the queue
+ scontrol | modify your job in some way
+ scancel  | kill your queued or running job
+ sacct    | See resorces use of last processes
+
+
+See @ref devel if you want to know what is to be done.
+
+Important pages
+-----------------
+- @ref devel
+- @ref devellog
+- @ref sim_list
+
+*/
+
+
+/*! 
+
+@page adapt ADAPTATIONS to Miyoshi's code in order to run DA system in TUX04 machine
+
+@brief Miyoshi's version of speedy (hereafter called speedy-M) not very consistent nor documented.
+Adaptations done to speedy ver 31 were not respecfull with speedy's structure 
+
+- Code's Bourne shell scripts don't comply strictly with bourne shell standard so they produce error when run directly or via sh scriptname. So they must be run with bash via "bash scriptname" or changing #!/bin/sh by #!/bin/bash in the scripts and executing them (./scriptname) afterwards. Probably Miyoshi's native system uses bash to execute Bourne shell scripts. 
+- Miyoshi's adaptation of Speedy strangely returns 1111 for normal end, which make scripts to stop abnormally. (Check line 87 of dyn_stloop.f in my_miyoshi-read-only/speedy/model/update). So I changed "STOP 1111" by "STOP"
+- Changed PRINT syntax in lines 75 and 87 of my_miyoshi-read-only/speedy/obs/obsmake.f90
+- Speedy boundary fields have big-endian byte ordering. So Speedy code must be compiled with proper flags for this:
+  - ifort -convert big_endian yourprog.f90   or   gfortran -fconvert=big-endian.
+This problem can also be fixed at runtime using enviroment variables ("export F_UFMTENDIAN=big" for ifort) however the compilation-time workaround is cleaner.  
+- Blas library not properly set
+  - LBLAS="-L/usr/lib -lblas" doesn't work, there is not libblas.a file but libblas.so.3gf and probably it must be machine dependent.
+- SUBROUTINE set_letkf_obs is a hardly documented obs. filter. I altered it so that all my surface temp. obs. pass. Nonetheless, the gross error filter is still in force an that's why not all my obs are assimilated.
+
+*/
+
+/*! 
+
+@page Report on code_branch2013-08-25
+
+During 2013-08-23,24 and 25 a heavily altered several files and the code became unstable to the point that even the spinup script failed. So I revert the code to the state of august 22. This is a list of things I did or found in that attempt:
+- Made speedy accept arguments directly from command line. This greatly cleaned scripting part
+- Tried to replace iogrid completely
+- Miyoshi's IDATE-IDAY patch for calendar issue is awfull so I removed IDATE completely. 
+Additionally this patch seems to be wrong as the first FORDATE call is always done with IDAY = 0 (begining of the month). 
+As a consequence STEPONE routine is always performed with forcings of the beginning of the month. This time interpolation flaw can be specially problematic when the model is run by small lapses, for example the 6 hr cycle used by miyoshi.
+
+*/

@@ -1,0 +1,48 @@
+/*!
+\mainpage Time-averaged DA system
+
+__DAS command examples__
+- ./das.sh (test system with default model)
+- ./das.sh --task=launch --model=L63_2s --sim_id="2013_11_29"
+- ./das.sh --task=queue --model=L63_2s --sim_id="2013_11_29"
+- ./das.sh --task=queue --model=L63 --sim_list="exp{01..07}"
+- ./das.sh --task=doxydoc
+ 
+__Important pages__
+- @ref code_descript
+- @ref devel
+- @ref Maryland_comments
+- @ref devellog
+- @ref tada
+- @ref newresults
+- @ref sim_list
+
+----
+
+__Versioning__
+- Typical versioning step (only after succesfully running das_test)
+  - $ git add -A          (Add new files and remove not longer existing files)
+  - $ git status          (Check what changed since last commit)
+  - $ git commit -a       (Save code snapshot)
+  - $ git log             (See development log)
+- Other useful git commands:
+  - $ git commit --amend -m "New commit message"
+  - $ git checkout -- dir/file (revert "file" to the last commit)
+
+__Monitoring__
+- ps T (show processes started from this terminal)
+- pkill (kill processes by name pattern)  
+- ps -ef|grep run_set| awk '{print $2}'|xargs kill (kill processes by name)
+- pstree
+
+__Queueing__
+- sbatch 	submit a batch script
+- srun 	        run a command via SLURM interactively
+- squeue 	list the jobs in the queue
+- scontrol 	modify your job in some way
+- scancel 	kill your queued or running job
+- sacct         See resorces use of last processes
+
+@page sim_list Simulation lists
+
+*/

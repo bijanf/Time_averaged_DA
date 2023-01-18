@@ -1,0 +1,97 @@
+#!/usr/bin/env bash
+set -o nounset # Unset variable expansion gives error
+cd "$(dirname "${BASH_SOURCE[0]}")" # Go to folder where this file lies
+source running_scripts/common_tools.sh
+
+echo "======================================"
+echo " Initializing DAS"
+echo "======================================"
+
+echo " - DAS running config"
+
+model_list=("L63" "L63_2s" "L96_1s_pf" "L96_2s" "L96_2s_mix")
+export model=${model:-${model_list[1]}}
+export   DBG=${debug:-off}
+export   F90=${F90:-ifort}
+#export   F90=${F90:-gfortran}
+export build=${build:-yes}
+export clone=${clone:-yes}
+export batch_name=batch4
+
+echo " - Folder structure"
+
+export  CODE_DIR=$(pwd)
+export   BIN_DIR=$CODE_DIR/../bin
+export   COM_DIR=$CODE_DIR/common
+export   DAS_DIR=$CODE_DIR/running_scripts
+export MODEL_DIR=$CODE_DIR/models/$model
+
+if [[ -n ${DAS_INITIALIZED:-} ]];then
+    remove_from_PATH $BIN_DIR
+    remove_from_PATH $DAS_DIR
+fi
+export PATH=$BIN_DIR:$DAS_DIR:$PATH
+
+case "$(hostname)" in
+    negrito)
+        ARCH_DIR="/home/jowa/Desktop/das_archive";;
+    tux04)
+       ARCH_DIR="/daten/model/acevedo/das_archive";;
+#       ARCH_DIR="$HOME/das_tmp";;
+    calc01|calc02|calc03|calc04|tux21)
+        ARCH_DIR="/daten/model/acevedo/das_archive";;
+    #    ARCH_DIR="$HOME/das_tmp";;
+    #    ARCH_DIR="/scratch/users/acevedo/archive/das_archive";;
+    soroban|node???)
+        ARCH_DIR="/scratch/acevedo/das_archive";;
+    *)
+        error "Unknown machine $(hostname)";;
+#           ARCH_DIR=$CODE_DIR/../data ;;
+esac
+export ARCH_DIR
+mkdir -p "$ARCH_DIR/logs"
+
+export ARCH_THERE="/scratch/acevedo/speedy-das_copies"
+export NCARG_COLORMAPS="$DAS_DIR/ncl_colormaps"
+
+echo " - Operative system settings"
+
+export LANG=C # no localization features
+
+if [[ ! -n ${cpus:-} ]];then
+    case "$(hostname)" in
+        negrito) cpus=2 ;;
+        tux04  ) cpus=4 ;;
+        tux21  ) cpus=8 ;;
+        calc02 ) cpus=6 ;;
+        calc01 ) cpus=6 ;;
+        calc03 ) cpus=12;;
+        calc04 ) cpus=6 ;;
+        soroban|node???) cpus=12;;
+        *)               cpus=1 ;;
+    esac
+fi
+export cpus
+
+# Process data needed by soroban (model and process dependent)
+process_time=${process_time:-"12:00:00"}
+# mem_per_cpu=${mem_per_cpu:-2000} # In megabytes
+mem_per_node=${mem_per_node:-17500} # Max RAM for small soroban nodes
+partition=${partition:-main}
+
+# modules
+case "$(hostname)" in
+    calc03|calc04 )
+        source /net/opt/system/modules/default/init/bash
+        module unload python/2.7.5
+        module load ncl/6.1.2 ;;
+esac
+
+echo "   Running in $(hostname) ($cpus cpus)"
+echo "   model       = $model"
+echo "   debug       = $DBG"
+echo "   ARCH_DIR    = $ARCH_DIR"
+echo "--------------------------------------"
+echo " DAS enviroment properly set"
+echo "======================================"
+export DAS_INITIALIZED=yes

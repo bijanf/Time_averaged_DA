@@ -1,0 +1,46 @@
+      PROGRAM TIME_INCREMENT
+
+      include "com_date.h"
+      
+      character*(10) time_one, inc_char
+      integer        increment
+     
+      Iarguments = IARGC()
+      IF (Iarguments /= 2) then
+        WRITE(0,*) 'Error. this function needs 2 arguments. Check code'
+        CALL EXIT (1)
+      END IF 
+     
+      CALL GETARG(1,time_one)
+      CALL GETARG(2,inc_char)
+      
+      READ( time_one, '(I4,I2,I2,I2)' ) IYEAR, IMONTH, IDATE, IHOUR 
+      READ( inc_char, '(I10)'         ) increment
+      
+C     Increment is assumed to be given in hours
+
+      IF (mod(increment,6) .NE. 0) THEN
+          WRITE(0,*) 'Error. Increment must be multiple of 6'
+          CALL EXIT (1)
+      END IF
+
+      n_increments = increment / 6
+      
+      DO n_inc = 1, n_increments
+            CALL TIMEINC_6HR
+      ENDDO
+      
+      ITIME = IHOUR + IDATE*100 + IMONTH*10000 + IYEAR*1000000
+      
+      WRITE(*,'(I10)') ITIME
+        
+      STOP
+
+      END
+      
+c        INC_YEAR  = FLOOR(INC / 8640)
+c        INC_LEFT  = INC      - INC_YEAR  * 8640 
+c        INC_MONTH = FLOOR(INC_LEFT / 720)
+c        INC_LEFT  = INC_LEFT - INC_MONTH * 720
+c        INC_DAY   = FLOOR(INC_LEFT / 24)
+c        INC_HOUR  = INC_LEFT - INC_DAY * 24

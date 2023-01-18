@@ -1,0 +1,150 @@
+C>======================================================================
+C> @brief Writes gridded state binary file.
+C> @usage This routine can be called at the end of model run
+C>  
+C> @param[in]  z_coord   = 'sigma' | 'press'
+C> @param[in]  time_kind = 'Insta' | 'Taver' | 'Tanom'
+C> @return     0 if successful or 1 if failed
+C=======================================================================
+      SUBROUTINE SET_RST_GRID (z_coord,time_kind)
+
+      include "atparam.h"
+      include "atparam1.h"
+      PARAMETER (NLON=IX, NLAT=IL, NLEV=KX, NGP=NLON*NLAT)
+c      include "com_date.h"
+c      include "com_tsteps.h"
+c      include "com_dyncon1.h"
+c      include "com_physcon.h"  ! P0
+      include "com_grvars.h"
+      include "com_tavars.h"
+      include "com_iitest.h"   ! Verbosity
+      
+      CHARACTER(5),INTENT(IN):: z_coord,time_kind
+      CHARACTER(50)          :: rst_name
+
+C     Setting filenames
+
+      rst_name = itime_str//'_grid_'//z_coord//'_'//time_kind//'.rst'
+      PRINT *, 'Writing Gridded Binary ', rst_name
+      
+C     Creating binary file
+
+      IF     ((z_coord.EQ.'sigma').AND.(time_kind.EQ.'Insta')) THEN
+      
+        CALL WRITE_GR4(rst_name, UGR4, VGR4, TGR4, QGR4, PSGR4, RRGR4)
+
+      ELSE IF((z_coord.EQ.'press').AND.(time_kind.EQ.'Insta')) THEN
+
+        CALL WRITE_GR4_PRESSURE(rst_name,
+     &                           UGR4,VGR4,TGR4,QGR4,PHIGR4,PSGR4,RRGR4)
+      ELSE IF((z_coord.EQ.'sigma').AND.(time_kind.EQ.'Taver')) THEN
+      
+        CALL WRITE_GR4(rst_name, UGR4_Taver,  VGR4_Taver,  TGR4_Taver,
+     &                           QGR4_Taver, PSGR4_Taver, RRGR4_Taver)
+
+      ELSE IF((z_coord.EQ.'sigma').AND.(time_kind.EQ.'Tanom')) THEN
+      
+        CALL WRITE_GR4(rst_name, UGR4_Tanom,  VGR4_Tanom,  TGR4_Tanom,
+     &                           QGR4_Tanom, PSGR4_Tanom, RRGR4_Tanom)
+      
+      ELSE
+      
+        WRITE(0,*) 'Error: Unsupported z_coord-time_kind combination:  '
+        WRITE(0,*) z_coord, '-', time_kind
+        CALL EXIT (1)
+
+      END IF
+
+      RETURN
+      END
+
+C     ==================================================================
+C>    @brief Write gridded sigma 4 byte state binary file
+C>    @note 6 variables are stored 
+C     ==================================================================
+      SUBROUTINE WRITE_GR4(fname,UGR4,VGR4,TGR4,QGR4,PSGR4,RRGR4)
+
+      include "atparam.h"
+      include "atparam1.h"
+
+      PARAMETER (NLON=IX, NLAT=IL, NLEV=KX, NGP=NLON*NLAT)
+
+      CHARACTER(*),INTENT(IN)  :: fname
+      REAL(4),DIMENSION(NGP,KX)::  UGR4,  VGR4, TGR4, QGR4
+      REAL(4),DIMENSION(NGP)   :: PSGR4, RRGR4
+
+      OPEN (96,FILE=fname,FORM='UNFORMATTED',
+     &                                    ACCESS='DIRECT', RECL=4*IX*IL)
+              
+      irec=1
+      DO k=KX,1,-1
+        WRITE (96,REC=irec) (UGR4(j,k),j=1,NGP)
+        irec=irec+1
+      END DO
+      DO k=KX,1,-1
+        WRITE (96,REC=irec) (VGR4(j,k),j=1,NGP)
+        irec=irec+1
+      END DO
+      DO k=KX,1,-1
+        WRITE (96,REC=irec) (TGR4(j,k),j=1,NGP)
+        irec=irec+1
+      END DO
+      DO k=KX,1,-1
+        WRITE (96,REC=irec) (QGR4(j,k),j=1,NGP)
+        irec=irec+1
+      END DO
+      WRITE   (96,REC=irec)(PSGR4(j)  ,j=1,NGP)
+      irec=irec+1
+      WRITE   (96,REC=irec)(RRGR4(j)  ,j=1,NGP)
+      CLOSE   (96)
+      
+      RETURN
+      END
+
+C     ==================================================================
+C>    @brief Write gridded pressure 4 byte state binary file 
+C>    @note 7 variables are stored 
+C     ==================================================================
+      SUBROUTINE WRITE_GR4_PRESSURE
+     &                    (fname,UGR4,VGR4,TGR4,QGR4,PHIGR4,PSGR4,RRGR4)
+
+      include "atparam.h"
+      include "atparam1.h"
+
+      PARAMETER (NLON=IX, NLAT=IL, NLEV=KX, NGP=NLON*NLAT)
+
+      CHARACTER(*),INTENT(IN)  :: fname
+      REAL(4),DIMENSION(NGP,KX)::  UGR4,  VGR4, TGR4, QGR4
+      REAL(4),DIMENSION(NGP)   :: PSGR4, RRGR4
+
+      OPEN (96,FILE=fname,FORM='UNFORMATTED',
+     &                                    ACCESS='DIRECT', RECL=4*IX*IL)
+              
+      irec=1
+      DO k=KX,1,-1
+        WRITE (96,REC=irec)  (UGR4(j,k),j=1,NGP)
+        irec=irec+1
+      END DO
+      DO k=KX,1,-1
+        WRITE (96,REC=irec)  (VGR4(j,k),j=1,NGP)
+        irec=irec+1
+      END DO
+      DO k=KX,1,-1
+        WRITE (96,REC=irec)  (TGR4(j,k),j=1,NGP)
+        irec=irec+1
+      END DO
+      DO k=KX,1,-1
+        WRITE (96,REC=irec)  (QGR4(j,k),j=1,NGP)
+        irec=irec+1
+      END DO
+      DO k=KX,1,-1
+        WRITE (99,REC=irec)(PHIGR4(j,k),j=1,NGP)
+        irec=irec+1
+      END DO
+      WRITE   (96,REC=irec)(PSGR4(j)  ,j=1,NGP)
+      irec=irec+1
+      WRITE   (96,REC=irec)(RRGR4(j)  ,j=1,NGP)
+      CLOSE   (96)
+      
+      RETURN
+      END

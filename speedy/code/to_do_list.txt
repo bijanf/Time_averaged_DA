@@ -1,0 +1,100 @@
+/*! 
+
+@page issues Known issues
+
+- Misalignment of common /DATE1/ in speedy might degrade performance:
+  - When compiling speedy code, IBM xlf and ifort produce many messages like this:
+    @verbatim Variable fday is misaligned.  This may affect the efficiency of the code. @endverbatim
+  - Using gfortran 4.4.5 or newer this message can be eliminated with the flag -fno-align-commons.
+- fortran executables using MPI have only worked when compiled with gfortran.
+  - letkf ifort-compiled program gets stalled in run-time (apparently related to a linking problem).
+  - mixed ifort-speedy/gfortran-letkf compiled systems gets stalled too.
+- das-speedy is currently depending on das folder position!!
+- cp command sometimes crashes without reason in met-fub computers giving the message:
+  @verbatim cp: cannot stat `prior/007/1980113000_grid_sigma_Tanom.rst': Permission denied @endverbatim
+  Therefore its usage is avoided in the code. 
+- ctl title is lost in cdo netcdf conversion
+*/
+
+/*! 
+
+@page devel To Do List
+Done
+- check test task (why so long??!!!!!) varity 0 ....done
+- removing replot task. TEST!!!!! (git commit) ....done
+
+Ongoing
+- add obs_id half of t0max, t0min (thresholding)
+  - the fortran file is common_obs_speedy.f90
+- create offline1_run and offline2_run tasks as discussed with Walter 
+  following Steiger
+- change the initialization method and produce a new free run, which 
+  should be statistically compared (mean state and spread) with the
+  previous one
+- copy the code in batch
+
+
+- systematize error_reduction calculation -> error_reduction_regarding()
+  - many reference runs should be possible
+  - backwards compatibility should be guarantee (thesis plots) or
+  - new batch and code version should be created (probably safer)
+  - articulate config_free_run and config_assi_run
+  
+- Send run with thresholding!!!!!!
+  
+  why plotting is done still even with global_flag=no???
+  
+
+
+Urgent
+- compare temperature limited trees against mixed ones
+- check again skewness maps  
+- try mixed growth-limitation regimes
+- plot geopotential height
+- go for pressure levels!!!
+- plot averaging lenght dependency:  tau vs latitude should be nice
+- Enable writing of spectrally filtered analysis fields (anal_f)
+- remove spinup from stats
+- is there adaptive inflation for speedy??
+- is there any warning from get_env still??
+- what about debug and optimized flags??
+- plot inflation
+- Plot update map
+
+Important
+- some titles in the report miss proper labeling
+- make vertical and horizontal localization changeable from scripting level, add values to config
+- refacture run_set varying averaging lenght and obs_operator
+- tie doxygen doc creation to git commit (add commit task to das)
+- Activate precipitation writing in speedy. 
+- ensemble mean calculation program in pressure levels. free run pressure level mean state it is not available!!
+- error calculation is better done in pressure level space
+- #limit stacksize 150000  ?
+- parse time_increment inputs
+- Create Breitenmoser tree-ring network table
+- Having the time averaged ensemble decomposition outside speedy would be cleaner and more readable.
+
+Important but time consuming
+- Add wind vector and pressure plots
+- Compile with ifort (faster). 
+- Test also plotting routines
+- solve warning
+  spe_matinv.f:15.72:
+        IF(AAMAX.EQ.0.) PAUSE 'singular'                                
+  Warning: Deleted feature: PAUSE statement at (1)
+- why PARTIAL OBSERVATIONAL DEPARTURE (anal) has less obs? due to screening of obs with too large observational departure.
+- Improve estimator of hard drive requirements
+- Develop estimator of computation time 
+- unsuccesfull runs must be deleted automaticly
+- obs programs confound blank station line with temperature obs
+- Simple Fix to IDATE-IDAY forcing bug mkes the model unstable.
+
+Interesting but not compelling
+- Unify further speedy- and lorenz-das
+- Switch to Speedy ver 41, 
+  - Land and slab ocean models are available in this version
+  - try to make Miyoshi's changes cleaner and more in accordance with speedy structure
+- isolate .h files overwritten by update files
+- Gregorian calendar Time increment function is very problematic seem to be too strict.
+
+*/

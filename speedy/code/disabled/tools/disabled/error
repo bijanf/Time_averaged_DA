@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+#=======================================================================
+#> @brief Script for exit due to fatal program error
+#> Accepts 1 argument: 
+#>		string containing descriptive error message
+#=======================================================================
+num_args=$#
+
+CALLING_SCRIPT=$(ps -ocommand= -p $PPID | awk -F/ '{print $NF}' | awk '{print $1}')
+#CALLING_SCRIPT=caller 1
+if [[ $num_args -eq 0 ]]; then
+	echo "Unknown Error in ${CALLING_SCRIPT}." 1>&2
+else
+	echo "Error in ${CALLING_SCRIPT}! ${1}." 1>&2
+fi
+
+exit 1
+
+#---------------------------------------------------------------
+	# Function for exit due to fatal program error
+	# Accepts 1 argument:
+	#			string containing descriptive error message
+	# Requires the variable PROGNAME to be set in the calling script:
+	# PROGNAME=$(basename $0)
+	#----------------------------------------------------------------
+	# Example call of the error_exit function:
+	# (Note the inclusion of the LINENO environment variable.
+	#  It contains the current line number).
+	
+	# echo "Example of error with line number and message"
+	# error_exit "$LINENO: An error has occurred."
+	#----------------------------------------------------------------
+
+#function print_call_trace()
+#{
+    ## skipping i=0 as this is print_call_trace itself
+    #for ((i = 1; i < ${#FUNCNAME[@]}; i++)); do
+        #echo -n  ${BASH_SOURCE[$i]}:${BASH_LINENO[$i-1]}:${FUNCNAME[$i]}"(): "
+        #sed -n "${BASH_LINENO[$i-1]}p" $0 
+    #done
+#}
+
+#print_call_trace

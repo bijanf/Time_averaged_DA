@@ -1,0 +1,143 @@
+/*! 
+
+\page batch3 Experiments batch 3
+Features:
+- Diagnostic statistics are now model dependent (Fmean or Xsel)
+- surfaces cycle-lengt vs inflation were always generated to make sure results do not depend in a particular value.
+- State Standard deviation reduction is calculated with reference to nature run
+- cycle-wise inflation used for the whole batch
+- model exploration sequence:
+  single_runs
+  surface_Taver_mode-tied_vs_infl__by_loc_radius (for spatially extended models)
+  surface_Taver_mode-tied_vs_infl__by_update_mode__obs_operator-plus
+  surface_Taver_mode-tied_vs_sat_level__by_update_mode__obs_operator
+  line_Taver_mode-tied__by_update_mode__obs_operator
+  surface_Taver_length_vs_cycle_length__by_update_mode__obs_operator
+
+
+__L63_2s model__
+
+Using 40 ensemble members
+- statistical noise was obviously reduced and the 
+- surface and line plots remain quite similar to the ones with a 20 members ensemble
+  
+- Time-augmented approach? should improve as it is subject to higher statistical noise (Larger state with equal # of obs)
+Did Augm get better??? 
+
+
+
+wait for soroban enso line plot
+
+
+
+Pena & Kalnay configs (uncoupled, extratropical_Ocen_atm_strong_coupling, extratropical_Ocen_atm_weak_coupling, weather_convection, and enso) showed very similar performance for Hakim and Augm1 updates. Enso config showed the biggest differeneces, where Augm1 update slighly outperforms Hakim update, and vls_0 operator performs most poorly.
+
+
+For the enso-c config family (S=1.0, k1=-11.0, c=cz=variable) for the runs with c= 0.25,0.3,0.4,0.5,0.55 Hakim approach had very bad time. Fast component's error and spread rapidly grow with Taver length while Augm1 approach remains stable.
+For this parameter area 
+- fast component atractor shrinks a lot a become much smaller in amplitude than the slow component one.
+- Slow-fast correlations become important ~ 0.5
+- Slow-fast spectrum become similar
+
+
+wait for long single runs in tux04
+
+
+
+Among the Tödler et al coupling configurations for shallow-deep soil layers (shallow-deep_soil_mid_coupling, shallow-deep_soil_strong_coupling, shallow-deep_soil_weak_coupling) the mid and strong coupling ones also showed this filter divergence for Hakim update.
+
+
+__L96_2s model__
+All the configs showed a very similar picture
+Augm1 update slighly outperforms Hakim update, and vls_0 operator
+ 
+preliminary line plot for h1.0-b4.0 show hakim update divergence for but maybe it is due to bad tunning
+  
+  
+__L96_2s_mix__
+More Through tunning showed that the problematic sqrt-shape of the optimum infl factor happens for large localization radii.
+For loc_radius=2 the optimum infl value is nearly constant.
+
+Very preliminar surface plots show quite similar performance for differenet updates and normal obs. operator diffreneces 
+
+link=0.2 line plot have mysteriusly completely crashed !!
+send it in tux04
+
+
+
+Open questions
+- Reducing time step for L96_2s_mix ( Filter divergence should ameliorate)????
+- saturation sensitivity
+
+
+\page batch2 Experiments batch 2
+
+__Issues__
+- State Standard deviation reduction was erroneously calculated with reference to the free ensemble run and then it present high negative values (~ -500%)
+- Fmean statistic was used for all the model, however for L63 and L63_2s models this 
+is not strictly proper, since their variables have diffrent amplitudes. 
+
+ Model      |   config     |  single runs | tunning | sensitivity studies
+-----------:|:------------:|:------------:|:-------:|:--------------
+ L63        |              |     done     |  done   |   done
+ L63_2s-0   | uncoupled    |     done     |  done   |   done
+ L63_2s-1   | extra-strong |     done     |  done   |   done 
+ L63_2s-2   | extra-weak   |     done     |  done   |   done 
+ L63_2s-3   | enso         |     done     |  done   |   done
+ L63_2s-4   | semienso1    |              |  done   |   done
+ L96_1s_pf  | F_ampl= 0.0  |              |         |
+ L96_2s_mix | link  = 0.0  |     done     |  done   |   done
+ L96_2s_mix | link  = 0.1  |              |         | 
+ L96_2s_mix | link  = 0.2  |     done     |         |   done
+
+L63
+----
+- Inflation very easy to tune, step/cycle-wise inflations work almost the same.
+- Hakim update has more spread in general. Augm{1,2} slightly better forecasts, hakim Taver analysis sligly better.
+- Hakim update much more unstable for longTaver-frequentObs.
+
+
+L63_2s
+------
+- Slow component statistics too noisy for 10000 and even 50000 assi. cycles. Runs with 200.000 assi. cycles showed a decently clear picture.
+- step-wise (infl_step = infl_cycle**(1.0d0/cycle_steps)) inflation works slightly better for all update approaches (perhaps due to the strong non-linearity)
+- Optimal infl_cycle value increases with cycle length. In particular, there is an scary no-skill zone in the right-lower corner of cycle-lenght vs Infl_cycle surfaces.
+- sqrt infl scaling (infl_enkf = (infl_enkf*SQRT(cycle_steps-1.0d0)) + 1.0d0) appears to make easier inflation setting, however is not elegant at all.
+
+
+Configurations:  
+
+__uncoupled__
+- too low infl/no-skill area if very big. In other to avoid it, selected inflation value for constant infl_cycle line study was rather high (1.08)
+
+
+__extratropical_Ocen_atm_strong_coupling__
+- too low infl/no-skill area if smaller than the uncoupled model one. Const. Infl_cycle=1.04 is enough to avoid it however for the sake of comparability Infl_cycle was also set tp 1.08.
+- Forecast
+  - best fast forecast by Augm1,2 Vsl0 !! (maybe Non-linear obs. op. reatins info of the inst. variable)
+  - best slow forecast by Hakim but still too noisy.
+- Analysis
+  - best Taver slow & fast analysis by Hakim sum,vsl0,vsl1
+  - best Insta fast analysis by Augm1,2 Vsl0 !!
+  - worst slow analysis and forecast for Augm1,2/plus (~polution of inst vars by assimilating purely taver obs)
+  
+__enso__
+
+
+__semienso1__
+- . 
+
+L96_2s_mix
+----------
+
+__L96_2s_mix-link = 0.2__
+Optimum inflation seems to increase with Observation period (~ square root dependence). Localization-inflation convergence zone is also moving with Observation period. Thus if infl is constant regarding obs. period, the filter tunning for Taver-tied line experiments becomes hard (it is not possible to avoid divergence)
+
+__L96_2s_mix-link = 0.0__
+Same square root dependence on the optimum infl as link=0.2
+Including this square root dependence in the selection of the infl factor seems to estabilize the filter
+
+
+Augm2 update has shown so far the same performance as Augm1 update. It is expensive so it will not further tested.
+
+*/

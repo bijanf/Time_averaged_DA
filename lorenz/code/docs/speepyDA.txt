@@ -1,0 +1,45 @@
+/*!
+\page speepyDA SPEEDY-DA intro
+
+The DAS (Data Assimilation system) allows to perform instantaneous and 
+time-averaged kalman filtering for speedy model.
+@note This code is based on the code [SpeedyLetkf](http://code.google.com/p/miyoshi/wiki/SpeedyLetkf) written by Takemasa Miyoshi. 
+Scripts were completely rewritten and and speedy-LETKF interface considerably changed.
+
+@section sec1 Instructions
+- First of all, go to code folder and execute:
+  - $ . das_initialize.sh (or)
+  - $ source das_initialize.sh
+- Afterwards, you can use the different system functions:
+  - Simulation launcher to create new simulation datasets:
+    - $ das_compute.sh (or)
+    - $ nohup das_compute.sh & (in the background allowing to close the terminal)
+  - System test (should be run after every potentially harmfull code change).
+    - $ das_test 
+  - Documentation creator:
+    - $ create_doxygen_doc.sh
+  - Lower level functions
+    - $ ...
+
+@attention Commands above only work if executed from the folder "code"
+
+@section versioning Versioning commands
+Version archive creation
+- $ git init
+
+Normal commiting cycle (only after a succesfull test)
+- $ git status          (find what should be added)
+- $ git add new_files?? (add new stuff)
+- $ git commit -a       (Save code snapshot)
+- $ git log             (to see development log)
+- git add .
+- git commit --amend
+
+See @ref devel if you want to know what is to be done.
+
+(Currently disabled)
+@par Comments
+ The amount of info sent to screen is controled with the parameter verbose.
+For maximum info set verbose to 2 and run the script via bash -x
+
+*/

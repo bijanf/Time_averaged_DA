@@ -1,0 +1,125 @@
+#!/usr/bin/env bash
+#set -xv
+das_make_all(){
+    funct_opening 3
+    model_name=$1
+
+    configure
+    echo " Building programs for model $model_name"
+
+    export  MODEL_DIR=$CODE_DIR/$model_name
+
+    rm -rf $WKDIR; mkdir -p $WKDIR; cd $WKDIR
+    local i=1
+    programs[$i]="$COM_DAS_DIR/sampling.f90"; (( i++ ))
+    programs[$i]="$COM_DAS_DIR/nature.f90";   (( i++ ))
+#    programs[$i]="$COM_DAS_DIR/nature_obs.f90";   (( i++ ))
+    programs[$i]="$COM_DAS_DIR/ensemble_run.f90"; (( i++ ))
+
+    for program_path in ${programs[@]}; do
+        build_program "$program_path"
+    done
+    funct_closing 3
+}
+
+configure(){
+    funct_opening 2
+    echo " Finding out right configuration" # (machine dependent)
+
+    # - Identifying server
+    echo " - Running in $(hostname)"
+
+    # - Configuring compilers
+    case "$(hostname)" in
+        "negrito")
+            F90=gfortran
+            ;;
+        "tux04")
+#            tux04_compiler="ifort"
+            tux04_compiler="gfortran"
+            case "$tux04_compiler" in
+                "gfortran")
+                    export F90=gfortran
+                    source /net/opt/system/modules/default/init/bash
+                    module load netcdf/gfortran-4.3.2/4.1.1
+                    ;;
+                "ifort")
+                    export F90=ifort
+                    source /net/opt/system/modules/default/init/bash
+                    module load netcdf/ifort-12.0.2/4.1.1
+                    ;;
+                *) error "Unknown compiler $tux04_compiler";;
+            esac ;;
+    # "a41") module load mpich2/gfortran-4.4.5/1.3.1;;
+        *) error " unknown machine $(hostname)";;
+    esac
+
+    echo " - Fortran compiler: $F90"
+
+    case "$F90" in
+        gfortran)
+            NETCDF_FLIBS="-L/usr/lib -lnetcdff"
+            NETCDF_FINCS="-I/usr/include/"
+            F90_opt="-ffree-line-length-none -lblas";;
+        ifort   )
+            ;;
+        *       ) error "Unknown fortran compiler $F90";;
+    esac
+    
+    case "$debug" in
+        "on" ) DBG="-g";;
+        "off") DBG="-O3";;
+        *) error "Unknown debug flag $debug";;
+    esac
+
+
+    funct_closing 2
+}
+
+#=========================================================================
+#> @brief Build programs which use Miyoshi's common F90 modules
+#>
+#> Usage example:
+#> $ build_program.sh generate_observations
+#=========================================================================
+build_program(){
+    [[ $# -eq 1 ]] || error "Usage: build_program program_code_fullpath"
+    program_code_fullpath=$1
+
+    program_name=$(basename "$program_code_fullpath")
+    program_name="${program_name%.*}"
+    #extension="${filename##*.}"
+    program_dir=$(dirname ${program_code_fullpath})
+
+    echo " - Building program $program_name"
+
+    cp $program_dir/${program_name}.f90 .
+    cp $COM_DIR/SFMT.f90 .
+    cp $COM_DIR/common.f90 .
+    cp $COM_DIR/netlib.f .
+    cat $COM_DIR/netlibblas.f >> ./netlib.f
+    cp $COM_DIR/common_mtx.f90 .
+    cp $COM_DIR/common_letkf.f90 .
+    cp $COM_DAS_DIR/common_das_tools.f90 .
+    cp $COM_DAS_DIR/common_dyn_system.f90 .
+    cp $COM_DAS_DIR/common_trajectory.f90 .
+    cp $COM_DAS_DIR/common_obs_operator.f90 .
+    cp $COM_DAS_DIR/common_filter.f90 .
+    cp $COM_DAS_DIR/common_ta_filter.f90 .
+    cp $MODEL_DIR/model_core.f90 .
+    cp $MODEL_DIR/model_tools.f90 .
+set -x
+    $F90 $F90_opt $DBG -o ${program_name}.exe     common.f90     netlib.f SFMT.f90 \
+        common_mtx.f90 common_letkf.f90 common_das_tools.f90        model_core.f90 \
+        common_dyn_system.f90                model_tools.f90 common_trajectory.f90 \
+        common_obs_operator.f90            common_filter.f90  common_ta_filter.f90 \
+        ${program_name}.f90 $NETCDF_FLIBS $NETCDF_FINCS
+    set +x
+}
+
+set -o errexit # non-zero return values make the script halt
+set -o nounset # Unset variable expansion gives error
+source ${COM_DAS_DIR}/common_das_tools.sh
+das_make_all $@
+exit $?
+

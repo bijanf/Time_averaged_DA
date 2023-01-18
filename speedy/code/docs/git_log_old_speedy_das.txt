@@ -1,0 +1,316 @@
+commit 05ff782
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Wed Apr 23 20:01:29 2014 +0200
+
+    - labeling scripting functions cleaned.
+
+commit bc206dd
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Wed Apr 23 17:53:48 2014 +0200
+
+    - ctl files no longer produced by speedy fortran code but at script level.
+    - Global mean-spread vs time plot added.
+
+commit 236c58c
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Tue Apr 22 19:18:43 2014 +0200
+
+    - initialize_das splitted in 2 scripts:
+      (i) family dependent (speedy and lorenz), paths, mpi and
+      (ii) independent part common to both families (machine characteristics).
+
+commit 33d4f47
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Tue Apr 22 17:09:06 2014 +0200
+
+    - speedy_run function further simplified.
+
+commit 94d4c34
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Tue Apr 22 11:45:17 2014 +0200
+
+    - common speedy-lorenz das code cleaned.
+
+commit 180465a
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Sun Apr 20 00:00:01 2014 +0200
+
+    - SSTs and surface modes added.
+
+commit b806e51
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Sat Apr 12 22:23:06 2014 +0200
+
+    - model_config updated.
+
+commit 0e14787
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Tue Mar 11 19:19:31 2014 +0100
+
+    - cycle_length="00.033", cycle_length_unit='mo', now designates one day.
+
+commit 5ea6642
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Mon Mar 10 17:32:03 2014 +0100
+
+    - cycle_length_unit option added.
+
+commit ff3f353
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Fri Mar 7 20:33:43 2014 +0100
+
+    - doxydoc generation activated.
+
+commit 0d4363d
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Fri Mar 7 19:18:34 2014 +0100
+
+    - ensemble size can now be set from initialize_das.sh.
+
+commit 5f6270c
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Fri Mar 7 17:47:22 2014 +0100
+
+    - code structure homogenized and cleaned.
+
+commit 0e3ebb3
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Fri Mar 7 10:55:54 2014 +0100
+
+    - stat_assi_run function added.
+
+commit 17f5c6a
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Sat Mar 1 20:06:09 2014 +0100
+
+    - calc_assi_run function added.
+
+commit fb2ec08
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Thu Feb 27 19:15:36 2014 +0100
+
+    - free_run_set calc to plot phases added.
+
+commit 633a4ac
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Thu Feb 27 17:10:31 2014 +0100
+
+    - variable names correspond as much as possible with das-lorenz code names.
+
+commit 3b8897d
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Thu Feb 27 10:12:28 2014 +0100
+
+    - test_list introduced.
+
+commit a06be03
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Wed Feb 26 23:27:38 2014 +0100
+
+    - mpi code now running in soroban.
+
+commit b5a6983
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Tue Feb 25 21:25:33 2014 +0100
+
+    - ensemble mean-spread calculation now done in parallel using mpi.
+
+commit 45066a9
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Tue Feb 25 12:43:23 2014 +0100
+
+    - speedy compilation no longer done via makefile.
+
+commit 38f1d90
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Fri Feb 21 13:22:58 2014 +0100
+
+    - free ensemble run calc and stat phases running.
+
+commit 12207d9
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Fri Feb 21 09:55:20 2014 +0100
+
+    - das-speedy structure adapted to das launcher.
+
+commit e8b9638
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Sun Feb 16 22:19:28 2014 +0100
+
+    - preliminar nature_run_set plots added.
+
+commit c3e2a87
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Thu Feb 6 17:34:27 2014 +0100
+
+    - spinup.sh merged into run.sh.
+
+commit 5c589fd
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Thu Feb 6 10:00:14 2014 +0100
+
+    - new das-speedy code folder created.
+
+commit 308b8db
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Thu Feb 6 09:50:22 2014 +0100
+
+    - run.sh script introduced.
+
+commit e7d0eec
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Thu Feb 6 01:04:49 2014 +0100
+
+    - run_set.sh script added.
+
+commit bc342e9
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Fri Aug 30 22:08:00 2013 +0200
+
+    - Overall RMSE and point MSSS plotting routines were implemented succesfully. :D
+
+commit f325d6a
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Fri Aug 30 16:52:16 2013 +0200
+
+    - Fortran ensemble mean calculation program for sigma gridded states was implemented and tested.
+    - Time averaged ensemble recomposition is now done outside speedy.
+    - Ensemble means are now calculated by an independent fortran program.
+    - Plotting routines for nature and ensemble runs were implemented and tested
+    - Simulation (das_compute) and plotting (das_plot) launchers were created.
+
+commit 9e1ec2a
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Thu Aug 29 12:30:08 2013 +0200
+
+    - Testing function was implemented.
+    - Gregorian calendar was reactivated in order to make filename Grads time templating correct. Unfortunately 360 day calendar is not supported by Grads.
+    - Ctl files generation is now correct, at least regarding time distance between states.
+
+commit 36847fc
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Thu Aug 22 20:32:19 2013 +0200
+
+    - Initial ensemble is now drawn from a sampling dataset which is independent of any nature run.
+    - DAS scripting part was completely refactured.
+    - Station network generation was systematized and enhanced.
+    - Automatic launching and run naming script "create_nature_runs.sh" was introduced.
+    - Automatic launching and run naming script "create_free_ensemble_runs.sh" was introduced.
+    - Automatic launching and run naming script "create_assim_ensemble_runs.sh" was introduced.
+    - Assimilation step stagnation bug was solved. Variance calculation was the culprit.
+
+commit c9b7b0e
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Thu Aug 15 21:23:24 2013 +0200
+
+    - Fortran time_increment program was introduced. It uses speedy timeinc_6hr subroutine.
+    - Simpler 360 day calendar is now in force. Gregorian one currevtly disabled.
+    - State Variance calculation programs were implemented and tested.
+    - file name conflicts were fixed, all names are set from fortran code.
+    - Complete Refactoring still in procces.
+
+commit 07e4aec
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Fri Aug 9 13:14:23 2013 +0200
+
+    - Functions to generate max_tree_network station table were developed.
+    - New obs generation program was introduced.
+    - SUBROUTINE set_letkf_obs was simplified to surface temperature obs.
+    - Launcher DAS_main now has a task argument (init:create folders and compile,run:the rest).
+
+commit 6c1126f
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Thu Aug 1 21:22:02 2013 +0200
+
+     - compilation and running phases were completely splitted.
+
+commit 6420c1e
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Thu Aug 1 09:45:14 2013 +0200
+
+     - Documentation system greatly improved. Bash scripts and readme file are now included.
+
+commit be43dc8
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Mon May 20 03:08:33 2013 +0200
+
+    Independent free run function was disabled. Now, both free
+    and constrained runs are performed via Assimilation run routine
+
+commit f398a2f
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Sun May 19 15:22:12 2013 +0200
+
+    Scripting part for time averaged DA very much revised and cleaned.
+    Problem running LETKF paralell program in backgroud was tracked down and solved.
+    Assimilation period is now variable, with a minimum value of 6 hours.
+    Normal (Instantaneous) DA scripts currently disabled.
+
+commit c9cd659
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Tue May 14 17:34:21 2013 +0200
+
+    Big changes. Speedy now accepts restart files splitted in time average and anomaly.
+    A complete set of script functions for time averaged data assimilation were implemented.
+    ta_da cycle run stably Ehhhh. :D
+
+commit 0899a05
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Sat May 11 23:24:27 2013 +0200
+
+    subroutines to calculate and write to file the time average state and the anomaly around it
+    were implemented
+
+commit 5eeb9d4
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Sat May 11 12:53:56 2013 +0200
+
+    Speedy time cycle fully and succesfully refactured, it goes from initial to final times given via units 7 and 8
+
+commit 95805c2
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Wed May 8 14:55:34 2013 +0200
+
+    Plot_error function implemented using CDO
+
+commit e3ce5ac
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Mon May 6 20:00:55 2013 +0200
+
+    Functions speedy2nc and ncview_speedy were added succesfully.
+
+commit 42d012d
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Tue Apr 30 18:46:53 2013 +0200
+
+    Observation and assimilation functions refactured. For the first time the DA cycle works Ehh!! :D
+
+commit b73b6a2
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Mon Apr 29 00:08:18 2013 +0200
+
+    arbitrary time increment function implemented, spinup and nature run already use it
+
+commit 098141e
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Thu Apr 25 19:03:51 2013 +0200
+
+    Scripting part heavily refactured, assimilation step crushes in mtx-eigen within common_mtx.f90
+
+commit 5fb274e
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Sat Apr 13 03:31:11 2013 +0200
+
+    create_observations function fully refactured an working well
+
+commit 681447d
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Thu Apr 11 21:46:11 2013 +0200
+
+    functions spinup_model and create_nature_run refactured and running well, bash time function still primitive
+
+commit 8bf504a
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Thu Apr 11 15:05:48 2013 +0200
+
+    Miyoshi's speedy DA system already slightly changed especially the scripting part

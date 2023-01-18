@@ -1,0 +1,28 @@
+/*!
+\page tada General Time-averaged DA problem
+
+\image html TADA_simple_schema.png "Simple TA-DA schema" width=6cm
+## Topics
+Hakim et al hipothesis: DA on time-averaged state is as efficient as DA on time augmented state (~ 4D EnkF) provided a linear obs. operator and negligible covariance between fast and slow variables.
+
+
+Hakim et al diferentiate between \f$ \tau_{ta}^{obs} \f$ and \f$ \tau_{ta}^{state} \f$.
+
+Three time constants:
+-----------------------
+  Period                   | Description                 
+:--------------------------|:--------------------------------
+ \f$ \tau_{assim}\f$       | Observation period
+ \f$ \tau_{ta}^{obs}\f$    | Observation time averaging span 
+ \f$ \tau_{ta}^{state}\f$  | state time averaging span 
+
+- Hakim et al papers normally assume \f$ \tau_{ta}^{state} = \tau_{assim}\f$.
+- \f$ \tau_{ta}^{state} = \tau_{ta}^{obs}\f$ might look more natural but much more complicated.
+  - <a href="../TA analysis cycle.pdf" target="_blank"> TA analysis cycle </a>.
+  - Cases \f$ \tau_{assim} > \tau_{ta}^{obs}\f$ and \f$ \tau_{assim} > \tau_{ta}^{obs}\f$ are very different.
+  - Validation is only straightforward at assimilation instants. Elsewhere there can be several analysis.
+
+  
+- For \f$ \tau_{assim} = \tau_{ta}^{obs}\f$ the confusion disappears.
+
+*/

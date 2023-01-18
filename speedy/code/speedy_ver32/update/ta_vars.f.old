@@ -1,0 +1,455 @@
+
+      SUBROUTINE TA_VARS (IMODE,ISTEP)
+C--
+C--   SUBROUTINE TA_VARS (ISTART)
+C--
+C--   Purpose : Operates over time-average vars /DYNSP3/
+C--
+C--   IMODE = 0 : Set time-averaged variables to zero
+C--         = 1 : Increment time-averaged variables
+C--         = 2 : Write time-average state and anomaly to gridded files (sigma levels)
+C--         = 3 : Read time-average state and anomaly from gridded files (sigma levels)
+
+
+C--   Initialized common blocks : DATE1, DYNSP1, DYNSP2 (PHIS only),
+C--                               SFCANOM, SFCFLUX
+C--
+      include "atparam.h"
+      include "atparam1.h"
+
+      PARAMETER (NLON=IX, NLAT=IL, NLEV=KX, NGP=NLON*NLAT)
+
+      include "com_date.h"
+      include "com_tsteps.h"
+
+c      include "com_dyncon0.h"
+c      include "com_dyncon1.h"
+
+      include "com_dynvar.h"
+c      include "com_forcing.h"
+c      include "com_anomvar.h"
+
+      include "com_grvars.h"
+      include "com_tavars.h"
+      include "com_physcon.h"  ! P0
+      
+      include "com_iitest.h"   ! Verbosity
+
+      ZERO = (0.,0.)
+
+C     0. Set time-averaged variables (/TAVARS/) to zero
+
+      IF (IMODE.EQ.0) THEN
+
+        DO K=1,KX
+          DO N=1,NX
+            DO M=1,MX
+              VOR_TA(M,N,K,1) = ZERO
+              DIV_TA(M,N,K,1) = ZERO
+                T_TA(M,N,K,1) = ZERO
+            ENDDO
+          ENDDO
+        ENDDO
+
+        DO N=1,NX
+          DO M=1,MX
+            PS_TA(M,N,1) = ZERO
+          ENDDO
+        ENDDO
+
+        DO ITR=1,NTR
+          DO K=1,KX
+            DO N=1,NX
+              DO M=1,MX
+                TR_TA(M,N,K,1,ITR) = ZERO
+              ENDDO
+            ENDDO
+          ENDDO
+        ENDDO
+
+C     1. Increment time-averaged variables
+
+      ELSE IF (IMODE.EQ.1) THEN
+
+        DO K=1,KX
+          DO N=1,NX
+            DO M=1,MX
+              VOR_TA(M,N,K,1) = VOR_TA(M,N,K,1) + VOR(M,N,K,1)
+              DIV_TA(M,N,K,1) = DIV_TA(M,N,K,1) + DIV(M,N,K,1)
+                T_TA(M,N,K,1) =   T_TA(M,N,K,1) +   T(M,N,K,1)
+            ENDDO
+          ENDDO
+        ENDDO
+
+        DO N=1,NX
+          DO M=1,MX
+            PS_TA(M,N,1) = PS_TA(M,N,1) + PS(M,N,1)
+          ENDDO
+        ENDDO
+
+        DO ITR=1,NTR
+          DO K=1,KX
+            DO N=1,NX
+              DO M=1,MX
+                TR_TA(M,N,K,1,ITR) = TR_TA(M,N,K,1,ITR)+ TR(M,N,K,1,ITR)
+              ENDDO
+            ENDDO
+          ENDDO
+        ENDDO
+
+C     2. Write time-averaged variables to gridded file in sigma levels
+
+      ELSE IF (IMODE.EQ.2) THEN
+      
+c       2.1 Calculate time-average values
+
+        fmean=1./real(ISTEP-1)
+        
+        DO K=1,KX
+          DO N=1,NX
+            DO M=1,MX
+              VOR_TA(M,N,K,1) = VOR_TA(M,N,K,1) * fmean
+              DIV_TA(M,N,K,1) = DIV_TA(M,N,K,1) * fmean
+                T_TA(M,N,K,1) =   T_TA(M,N,K,1) * fmean
+            ENDDO
+          ENDDO
+        ENDDO
+
+        DO N=1,NX
+          DO M=1,MX
+            PS_TA(M,N,1) = PS_TA(M,N,1) * fmean
+          ENDDO
+        ENDDO
+
+        DO ITR=1,NTR
+          DO K=1,KX
+            DO N=1,NX
+              DO M=1,MX
+                TR_TA(M,N,K,1,ITR) = TR_TA(M,N,K,1,ITR) * fmean
+              ENDDO
+            ENDDO
+          ENDDO
+        ENDDO
+
+        if(iitest==1) call MONITOR_SPECTRAL_TIME_AVERAGE 
+
+c       2.2 Calculate time-average anomaly values
+
+        DO K=1,KX
+          DO N=1,NX
+            DO M=1,MX
+              VOR_AN(M,N,K,1) = VOR(M,N,K,1) - VOR_TA(M,N,K,1)
+              DIV_AN(M,N,K,1) = DIV(M,N,K,1) - DIV_TA(M,N,K,1)
+                T_AN(M,N,K,1) =   T(M,N,K,1) -   T_TA(M,N,K,1)
+            ENDDO
+          ENDDO
+        ENDDO
+
+        DO N=1,NX
+          DO M=1,MX
+            PS_AN(M,N,1) = PS(M,N,1) - PS_TA(M,N,1)
+          ENDDO
+        ENDDO
+
+        DO ITR=1,NTR
+          DO K=1,KX
+            DO N=1,NX
+              DO M=1,MX
+                TR_AN(M,N,K,1,ITR)= TR(M,N,K,1,ITR) - TR_TA(M,N,K,1,ITR)
+              ENDDO
+            ENDDO
+          ENDDO
+        ENDDO
+
+cC--       Monitoring         
+c        if (iitest.eq.1) PRINT *,
+c     &                'Output Time average anomaly:'
+
+c      if(iitest==1) PRINT *,' VOR_AN:',MINVAL( VOR_AN) ,MAXVAL (VOR_AN)
+c      if(iitest==1) PRINT *,' DIV_AN:',MINVAL( DIV_AN) ,MAXVAL (DIV_AN)
+c      if(iitest==1) PRINT *,' T_AN:',MINVAL( T_AN) ,MAXVAL (T_AN)
+c      if(iitest==1) PRINT *,' PS_AN:',MINVAL( PS_AN) ,MAXVAL (PS_AN)
+c      if(iitest==1) PRINT *,' TR_AN:',MINVAL( TR_AN) ,MAXVAL (TR_AN)
+
+c       Time averaged state
+
+c       2.3 Conversion from spectral model variable to gridded variable
+
+        CALL SPECTRAL_TO_GRIDDED 
+     &        (VOR_TA,DIV_TA,T_TA,TR_TA,PS_TA,UGR4,VGR4,TGR4,QGR4,PSGR4)
+
+         
+C--       Monitoring         
+c        if (iitest.eq.1) then
+          PRINT *, 'Gridded Time average state:'
+          PRINT *,' UGR4  :',MINVAL( UGR4) ,MAXVAL (UGR4)
+          PRINT *,' VGR4  :',MINVAL( VGR4) ,MAXVAL (VGR4)
+          PRINT *,' TGR4  :',MINVAL( TGR4) ,MAXVAL (TGR4)
+          PRINT *,' QGR4  :',MINVAL( QGR4) ,MAXVAL (QGR4)
+          PRINT *,' PSGR4 :',MINVAL(PSGR4) ,MAXVAL(PSGR4)
+c        endif
+
+
+C--     2.5 Writing state in binary file 
+        OPEN (94,FILE='state_ta_average.grd',FORM='UNFORMATTED',
+     &         ACCESS='DIRECT', RECL=4*IX*IL)
+              
+        irec=1
+        DO k=KX,1,-1
+          WRITE (94,REC=irec) (UGR4(j,k),j=1,NGP)
+          irec=irec+1
+        END DO
+        DO k=KX,1,-1
+          WRITE (94,REC=irec) (VGR4(j,k),j=1,NGP)
+          irec=irec+1
+        END DO
+        DO k=KX,1,-1
+          WRITE (94,REC=irec) (TGR4(j,k),j=1,NGP)
+          irec=irec+1
+        END DO
+        DO k=KX,1,-1
+          WRITE (94,REC=irec) (QGR4(j,k),j=1,NGP)
+          irec=irec+1
+        END DO
+                  
+        WRITE   (94,REC=irec) (PSGR4(j) ,j=1,NGP)
+c        irec=irec+1
+c        WRITE (94,REC=irec) (RRGR4(j),j=1,NGP)
+
+        CLOSE (94)
+
+
+c       Time averaged anomaly
+
+c       2.3 Conversion from spectral model variable to gridded variable
+
+        CALL SPECTRAL_TO_GRIDDED 
+     &        (VOR_TA,DIV_TA,T_TA,TR_TA,PS_TA,UGR4,VGR4,TGR4,QGR4,PSGR4)
+
+C--       Monitoring         
+          if(iitest==1) PRINT *, 'Output Gridded Anomaly:'
+          if(iitest==1) PRINT *,' UGR4  :',MINVAL( UGR4) ,MAXVAL (UGR4)
+          if(iitest==1) PRINT *,' VGR4  :',MINVAL( VGR4) ,MAXVAL (VGR4)
+          if(iitest==1) PRINT *,' TGR4  :',MINVAL( TGR4) ,MAXVAL (TGR4)
+          if(iitest==1) PRINT *,' QGR4  :',MINVAL( QGR4) ,MAXVAL (QGR4)
+          if(iitest==1) PRINT *,' PSGR4 :',MINVAL(PSGR4) ,MAXVAL(PSGR4)
+
+C--     2.5 Writing state in binary file 
+
+        OPEN (95,FILE='state_ta_anomaly.grd',FORM='UNFORMATTED',
+     &         ACCESS='DIRECT', RECL=4*IX*IL)
+              
+        irec=1
+        DO k=KX,1,-1
+          WRITE (95,REC=irec) (UGR4(j,k),j=1,NGP)
+          irec=irec+1
+        END DO
+        DO k=KX,1,-1
+          WRITE (95,REC=irec) (VGR4(j,k),j=1,NGP)
+          irec=irec+1
+        END DO
+        DO k=KX,1,-1
+          WRITE (95,REC=irec) (TGR4(j,k),j=1,NGP)
+          irec=irec+1
+        END DO
+        DO k=KX,1,-1
+          WRITE (95,REC=irec) (QGR4(j,k),j=1,NGP)
+          irec=irec+1
+        END DO
+                  
+        WRITE   (95,REC=irec) (PSGR4(j) ,j=1,NGP)
+c        irec=irec+1
+c        WRITE (95,REC=irec) (RRGR4(j),j=1,NGP)
+
+        CLOSE (95)
+
+cC     3. Read time-average state and anomaly from gridded files (sigma levels)
+
+c      ELSE IF (IMODE.EQ.3) THEN
+
+cc       3.1 Calculate time-average values
+
+c         PRINT *,'Reading time average gridded dataset'
+
+c         OPEN (92,FORM='UNFORMATTED',ACCESS='DIRECT',RECL=4*NGP)
+c         irec=1
+c         DO K=KX,1,-1
+c            READ (92,REC=irec) ( UGR4(j,k),j=1,NGP)
+c            irec=irec+1
+c         END DO
+c         DO K=KX,1,-1
+c            READ (92,REC=irec) ( VGR4(j,k),j=1,NGP)
+c            irec=irec+1
+c         END DO
+c         DO K=KX,1,-1
+c            READ (92,REC=irec) ( TGR4(j,k),j=1,NGP)
+c            irec=irec+1
+c         END DO
+c         DO K=KX,1,-1
+c            READ (92,REC=irec) ( QGR4(j,k),j=1,NGP)
+c            irec=irec+1
+c         END DO
+c         READ    (92,REC=irec) (PSGR4(j)  ,j=1,NGP)
+c         CLOSE   (92)
+
+C--      1.2 Conversion from single prec. gridded vars to double prec. ones 
+
+          UGR =  UGR4
+          VGR =  VGR4
+          TGR =  TGR4
+          QGR =  QGR4 *1.0d3
+         PSGR = PSGR4
+         PSGR = log(PSGR/P0)
+         
+C--      1.3 Conversion from gridded variable to spectral variable
+
+         DO K=1,KX
+             CALL VDSPEC(UGR(1,K),VGR(1,K),VOR_TA(1,1,K,1),
+     &                                     DIV_TA(1,1,K,1),2)
+             
+             IF(IX.EQ.IY*4) THEN
+                 CALL TRUNCT(VOR_TA(1,1,K,1))
+                 CALL TRUNCT(DIV_TA(1,1,K,1))
+             END IF
+             
+             CALL SPEC(TGR(1,K),T_TA(1,1,K,1))
+             CALL SPEC(QGR(1,K),TR_TA(1,1,K,1,1))
+             
+         END DO
+         CALL SPEC(PSGR(1),PS_TA(1,1,1))
+
+c         PRINT *,'Reading time average anomaly gridded dataset'
+
+c         OPEN (93,FORM='UNFORMATTED',ACCESS='DIRECT',RECL=4*NGP)
+c         irec=1
+c         DO K=KX,1,-1
+c            READ (93,REC=irec) ( UGR4(j,k),j=1,NGP)
+c            irec=irec+1
+c         END DO
+c         DO K=KX,1,-1
+c            READ (93,REC=irec) ( VGR4(j,k),j=1,NGP)
+c            irec=irec+1
+c         END DO
+c         DO K=KX,1,-1
+c            READ (93,REC=irec) ( TGR4(j,k),j=1,NGP)
+c            irec=irec+1
+c         END DO
+c         DO K=KX,1,-1
+c            READ (93,REC=irec) ( QGR4(j,k),j=1,NGP)
+c            irec=irec+1
+c         END DO
+c         READ    (93,REC=irec) (PSGR4(j)  ,j=1,NGP)
+c         CLOSE   (93)
+
+C--      1.2 Conversion from single prec. gridded vars to double prec. ones 
+
+          UGR =  UGR4
+          VGR =  VGR4
+          TGR =  TGR4
+          QGR =  QGR4 *1.0d3
+         PSGR = PSGR4
+         PSGR = log(PSGR/P0)
+         
+C--      1.3 Conversion from gridded variable to spectral variable
+
+         DO K=1,KX
+             CALL VDSPEC(UGR(1,K),VGR(1,K),VOR_AN(1,1,K,1),
+     &                                     DIV_AN(1,1,K,1),2)
+             
+             IF(IX.EQ.IY*4) THEN
+                 CALL TRUNCT(VOR_AN(1,1,K,1))
+                 CALL TRUNCT(DIV_AN(1,1,K,1))
+             END IF
+             
+             CALL SPEC(TGR(1,K),T_AN(1,1,K,1))
+             CALL SPEC(QGR(1,K),TR_AN(1,1,K,1,1))
+             
+         END DO
+         CALL SPEC(PSGR(1),PS_AN(1,1,1))
+
+
+      ELSE                                                               !TM
+                                                                         !TM
+        PRINT *,'TA_VARS: Invalid IMODE value : ', IMODE
+        STOP                                                             !TM
+
+      ENDIF
+
+C--
+      RETURN
+      END
+
+
+      SUBROUTINE MONITOR_SPECTRAL_TIME_AVERAGE
+      include "atparam.h"
+      include "atparam1.h"
+
+      include "com_tavars.h"
+      PRINT *, 'Spectral Output Time average state:'
+      PRINT *,' VOR_TA:',MINVAL(ABS(VOR_TA)),MAXVAL(ABS(VOR_TA))
+      PRINT *,' DIV_TA:',MINVAL(ABS(DIV_TA)),MAXVAL(ABS(DIV_TA))
+      PRINT *,'   T_TA:',MINVAL(ABS(  T_TA)),MAXVAL(ABS(  T_TA))
+      PRINT *,'  PS_TA:',MINVAL(ABS( PS_TA)),MAXVAL(ABS( PS_TA))
+      PRINT *,'  TR_TA:',MINVAL(ABS( TR_TA)),MAXVAL(ABS( TR_TA))
+        
+      RETURN
+      END      
+ 
+
+      SUBROUTINE SPECTRAL_TO_GRIDDED 
+     &                       (VOR,DIV,T,TR,PS,UGR4,VGR4,TGR4,QGR4,PSGR4)
+      include "atparam.h"
+      include "atparam1.h"
+
+      PARAMETER (NLON=IX, NLAT=IL, NLEV=KX, NGP=NLON*NLAT)
+      
+      include "com_physcon.h"  ! P0
+
+      COMPLEX VOR(MX,NX,KX,2), DIV(MX,NX,KX,2), T(MX,NX,KX,2)
+      COMPLEX     PS(MX,NX,2), TR(MX,NX,KX,2,NTR)
+
+      REAL    UGR (NGP,KX),   VGR (NGP,KX),  TGR (NGP,KX)
+      REAL    QGR (NGP,KX), PHIGR (NGP,KX), PSGR (NGP)
+
+      REAL    UGR1(NGP,KX),   VGR1(NGP,KX),  TGR1(NGP,KX)
+      REAL(4) UGR4(NGP,KX),   VGR4(NGP,KX),  TGR4(NGP,KX)
+      REAL    QGR1(NGP,KX), PHIGR1(NGP,KX), RRGR1(NGP)
+      REAL(4) QGR4(NGP,KX), PHIGR4(NGP,KX), PSGR4(NGP)
+
+C      2.3 Conversion from spectral model variable to gridded variable
+
+        DO K=1,KX
+c          CALL UVSPEC(VOR(1,1,K,1),DIV(1,1,K,1),UCOSTMP,VCOSTMP)
+          CALL GRID(UCOSTMP,UGR(1,K),2)
+          CALL GRID(VCOSTMP,VGR(1,K),2)
+        END DO
+
+        DO K=1,KX
+          CALL GRID(T(1,1,K,1),TGR(1,K),1)
+          CALL GRID(TR(1,1,K,1,1),QGR(1,K),1)
+c          CALL GRID(PHI(1,1,K),PHIGR(1,K),1)
+        END DO
+
+        CALL GRID(PS(1,1,1),PSGR(1),1)
+
+C--     2.4 Select first time step only     
+         
+          UGR1 =   UGR
+          VGR1 =   VGR
+          TGR1 =   TGR
+          QGR1 =   QGR
+c        PHIGR1 = PHIGR
+
+C--     2.4 Conversion from double prec. gridded vars to single prec. ones 
+
+          UGR4 =   UGR1
+          VGR4 =   VGR1
+          TGR4 =   TGR1
+          QGR4 =   QGR1*1.0d-3 ! kg/kg
+c        PHIGR4 = PHIGR1/GG   ! m
+c         RRGR4 =  RRGR1
+         PSGR4 = P0*exp(PSGR)! Pa
+C--
+      RETURN
+      END
+    

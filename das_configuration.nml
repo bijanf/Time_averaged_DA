@@ -1,0 +1,9 @@
+&nature_nml
+   ndays=3600, ! 10 years
+/
+
+# specify these in the same order, the same number of items
+#   special_localization_obs_types  = "",
+#   special_localization_cutoffs    = -1,
+
+

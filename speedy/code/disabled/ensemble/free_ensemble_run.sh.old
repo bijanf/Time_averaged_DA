@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+#=========================================================================
+#> @brief Performs an ensemble run without data assimilation which will be
+#> as reference to study the skill of data assimilation ensemble runs
+#=========================================================================
+free_ensemble_run(){
+    [[ $# -eq 5 ]] || error "Usage: free_ensemble_run run_name nature_name sampling_name members save_members"
+
+            run_name=$1
+         nature_name=$2
+       sampling_name=$3
+             members=$4
+        save_members=$5
+
+    echo "==============================================="
+    echo " FREE ENSEMBLE RUN"
+    echo "==============================================="
+
+    ensemble_run.sh $run_name $nature_name station_none    $sampling_name surf_temp  Free  $members $save_members
+    #                       run_name  nature_name station_set_name sampling_name obs_config A_mode members  save_members
+
+    return 0 # Success
+}
+
+set -o errexit # non-zero return values make the script halt
+set -o nounset # Unset variable expansion gives error
+
+# Current hardwiring
+#free_ensemble_run free_run_6hr_10steps nature_0006hr_0010ts_spin1 sampling_100steps_12hours 20 no  | tee $ARCHIVE_DIR/free_run_6hr_10steps.log
+
+free_ensemble_run $@
+exit $?

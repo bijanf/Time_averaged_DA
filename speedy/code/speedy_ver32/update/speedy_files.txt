@@ -1,0 +1,52 @@
+/*! @page da_files Speedy Input-Output File list
+
+ Run config files
+-------------------
+ Unit | I/O | Purpose                                 | Filename
+-----:|:---:|-----------------------------------------|:---------
+   2  |  I  | restart file mode                       | fort.2
+   7  |  I  | initial time setting (-yyyymmddhh)      | fort.7
+   8  |  I  | final   time setting (+yyyymmddhh)      | fort.8
+   9  |  I  | time leap            (run lenght)       | fort.9
+
+ Restart files
+---------------
+ Unit | I/O |   H.R    |   V.R    | T.S | Description          | Filename
+-----:|:---:|:--------:|:---------|:---:|----------------------|:---------
+   3  |  I  | SPECTRAL | Sigma    |  2  | instantaneous state  | fort.3
+  10  |  O  | SPECTRAL | Sigma    |  2  | instantaneous state  | fort.10
+  90  |  I  | GRIDDED  | Sigma    |  1  | instantaneous state  | -yyyymmddhh_grid_sigma.rst
+  99  |  O  | GRIDDED  | Sigma    |  1  | instantaneous state  | +yyyymmddhh_grid_sigma.rst
+  99  |  O  | GRIDDED  | Pressure |  1  | instantaneous state  | +yyyymmddhh_grid_press.rst
+  92  |  I  | GRIDDED  | Sigma    |  1  | time average state   | fort.92
+  93  |  I  | GRIDDED  | Sigma    |  1  | time average anomaly | fort.93
+  96  |  O  | GRIDDED  | Sigma    |  1  | time average state   | state_ta_average.grd
+  97  |  O  | GRIDDED  | Sigma    |  1  | time average anomaly | state_ta_anomaly.grd
+
+ @note H.R.: Horizontal representation, V.R.: Vertical representation, T.S.:Time steps.
+ @note For every output restart file an homonymous .ctl control file is created.
+ @attention Currently it is not possible to start speedy from a restart file in pressure levels.
+
+ Diagnostic fields (Currently disabled)
+-------------------
+ Unit | I/O | Purpose                                 | Filename
+-----:|:---:|-----------------------------------------|:---------
+  11  |  O  | time-mean output with 3-d and 2-d fields| attmNNN_YYYY.grd
+  13  |  O  | 2-nd order moments                      | atvaNNN_YYYY.grd
+  15  |  O  | diabatic forcing fields (in degK/day)   | atdfNNN_YYYY.grd
+  17  |  O  | Daily time-mean output                  | daytmNNN_YYYY.grd
+
+ Boundary conditions
+---------------------
+ Unit | I/O | Purpose                                 | Filename
+-----:|:---:|-----------------------------------------|:---------
+  20  |  I  | ln -fs $SB/orog_lsm_alb.${1}.grd        | fort.20
+  21  |  I  | ln -fs $SB/sst_8190clim.${1}.sea.grd    | fort.21
+  22  |  I  | ln -fs $SB/seaice_8190clim.${1}.sea.grd | fort.22
+  23  |  I  | ln -fs $SB/skt_8190clim.${1}.land.grd   | fort.23
+  24  |  I  | ln -fs $SB/sndep_8190clim.${1}.land.grd | fort.24
+  25  |  I  | ln -fs $SB/veget.${1}.land.grd          | fort.25
+  26  |  I  | ln -fs $SB/soilw_8190clim.${1}.land.grd | fort.26
+  30  |  I  | cp     $SC/sst_anom_7990.${1}.grd       | fort.30
+  31  |  I  | ln -fs $H/hflux/clim_hflux_582.grd      | fort.31
+*/

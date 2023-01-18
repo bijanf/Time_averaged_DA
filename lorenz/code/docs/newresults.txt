@@ -1,0 +1,12 @@
+/*!
+\page newresults Possible New Model: L63 with slow-fast components.
+
+\image html L96_2s_7.png
+
+<a href="../L63_2s_7_results.pdf" target="_blank"> Preliminary results </a>
+----------------------------------------------------------------------------
+- Time state augmentation clearly outperforms time-averaged DA. Nevertheless it is very expensive especially for high dimensional models.
+- Fast-slow variables not covarying assumption seems not to hold for this system.
+- Smooth shifting DA improvement is not vary noticeable when Time state augmentation is used.
+*/
+

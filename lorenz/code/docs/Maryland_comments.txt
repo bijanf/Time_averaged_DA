@@ -1,0 +1,27 @@
+/*!
+\page Maryland_comments Feedback from Maryland presentation
+
+__Andrew Majda__
+- L96 fast-fast Model doesn't resemble enough atmosphere-land interaction. 
+
+__Jeff Anderson__
+- Atmosphere-land exp. vslite must not pose obs. period scaling problems due to the time average.
+- State Augmentation might be helpful (Recommended Tarantola book).
+  - State Augmentation with observations Looks just like repetition. Why better?
+
+- Gaussian anamorfosis might be helpful.
+  It has been useful to assimilate bounded quantities:
+  - Lien, Kalnay & Miyoshi 2013 - Global Precipitation using Speedy
+  - Nielsen-Gammon - Inverse hyperbolic tangent transform for there are lower or upper bounds (haven't found references).
+  - Simon and Bertino 2009 - Coupled Ecosystem model
+  - Schöniger et al 2012 - hydraulic tomography
+
+  semilog, gaussian, Inverse hyperbolic tangent... What's the difference? any book on that? Tarantola.
+  
+  Is it worth the effort?
+
+__Kayo Ide__
+- Would be interesting to use a linear, analitically solvable model.
+- Enkf and EnKBF results should be equivalent for the linear obs. operator.
+  - An square root filter would be more comparable to my deterministic EnKBF?
+*/

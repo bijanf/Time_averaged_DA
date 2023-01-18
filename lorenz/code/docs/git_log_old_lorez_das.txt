@@ -1,0 +1,1079 @@
+commit ec8b8c2
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Tue Apr 22 11:46:36 2014 +0200
+
+    - common speedy-lorenz das code cleaned.
+
+commit e6ac4ea
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Tue Apr 22 10:33:11 2014 +0200
+
+    - das_initialized script unified with speedy's one.
+
+commit 1e93804
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Mon Apr 21 20:45:45 2014 +0200
+
+    - stat,plot,docu and view tasks added to das.sh.
+
+commit ac1ffe2
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Sun Apr 20 00:06:05 2014 +0200
+
+    - station network can now be changed from scripts.
+
+commit ca6b8a9
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Thu Apr 10 14:56:29 2014 +0200
+
+    - response function threshold calculation was extended.
+
+commit 23c0bf4
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Mon Apr 7 13:08:39 2014 +0200
+
+    - clean function added to run_set_bunch script.
+
+commit 5073942
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Fri Apr 4 18:21:23 2014 +0200
+
+    - Experiments extended and cleaned.
+
+commit 139d73f
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Thu Apr 3 18:01:41 2014 +0200
+
+    - observation normalization improved.
+
+commit 7a62bd7
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Fri Mar 14 14:38:20 2014 +0100
+
+    - code copy now put into dataset.
+
+commit 476d911
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Mon Mar 10 17:48:44 2014 +0100
+
+    - squeue scripts now depend on the machine used.
+
+commit 02d49cd
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Sun Mar 9 14:03:27 2014 +0100
+
+    - line_Taver-tied_plot fixed.
+
+commit 969ca63
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Thu Mar 6 18:28:04 2014 +0100
+
+    - machine dependent queue tasks added.
+
+commit c4fe65f
+Author: Walter Acevedo <acevedo@tux21.met.fu-berlin.de>
+Date:   Mon Mar 3 20:22:58 2014 +0100
+
+    - ensemble size can now be set from model_script (via sed string replacement).
+
+commit 76eb6a6
+Author: Walter Acevedo <acevedo@tux21.met.fu-berlin.de>
+Date:   Mon Mar 3 19:52:22 2014 +0100
+
+    - L96_2s_mix model structure updated.
+
+commit ba3c0e9
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Mon Mar 3 00:00:58 2014 +0100
+
+    - docu_sets option added.
+
+commit f30ba7b
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Fri Feb 28 11:39:52 2014 +0100
+
+    -  L96_2s configurations added.
+
+commit 7871e35
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Thu Feb 27 23:36:03 2014 +0100
+
+    - initialize_das cleaned and simplified.
+
+commit 6ea495a
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Thu Feb 27 12:10:21 2014 +0100
+
+    - experiments script cleaned and simplified.
+
+commit d3b8297
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Wed Feb 26 20:41:32 2014 +0100
+
+    - nature state periodogram plot added.
+
+commit e447e38
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Wed Feb 26 18:56:44 2014 +0100
+
+    - L63_2s atractor and nature time series plots added.
+
+commit 65da0df
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Wed Feb 26 14:31:41 2014 +0100
+
+    - code copies now put in soroban scracth.
+
+commit ad31ee5
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Wed Feb 26 13:34:15 2014 +0100
+
+    - L96_2s structure updated.
+
+commit 71ab1c8
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Mon Feb 24 19:51:48 2014 +0100
+
+    - dependency chain view-> docu-> plot_assi-> plot_free added.
+
+commit 078b303
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Mon Feb 24 16:47:01 2014 +0100
+
+    - diagnostic stats are now model dependent.
+
+commit 5354ce1
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Mon Feb 24 14:32:33 2014 +0100
+
+    - Task success flag files added to datasets.
+
+commit 734638f
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Fri Feb 21 21:20:10 2014 +0100
+
+    - Improved matlab-based line plots added.
+
+commit 334383c
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Tue Feb 18 20:19:22 2014 +0100
+
+    - Response function thresholding added.
+
+commit 7c8e43f
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Tue Feb 18 18:31:37 2014 +0100
+
+    - Fmean statistic replaced by Xsel. (Fmean is not proper for L63 and L63-2s models).
+
+commit 84858f0
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Thu Feb 13 20:57:16 2014 +0100
+
+    - plot task is now off by default, so that keep low memmory requirements in soroban.
+
+commit 31b31ee
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Wed Feb 12 19:12:13 2014 +0100
+
+    - model scripts refactured, currently only L63_2s-? model is up to date.
+
+commit 28aaa28
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Thu Feb 6 20:15:06 2014 +0100
+
+    - task flag system refactured using associative arrays.
+
+commit 31fb4a0
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Wed Feb 5 19:10:18 2014 +0100
+
+    - infl_cycle_length_scaling option added.
+
+commit f114943
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Tue Feb 4 20:02:27 2014 +0100
+
+    - plot array graph alignment problem fixed.
+
+commit 61f43b7
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Sun Feb 2 01:37:08 2014 +0100
+
+    - PATH env. variable is no longer recursively increasing.
+
+commit 41c4f99
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Sat Feb 1 22:21:16 2014 +0100
+
+    - report functions improved.
+
+commit 181b962
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Sat Feb 1 21:27:16 2014 +0100
+
+    - barename function improved.
+
+commit a7ba25b
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Fri Jan 31 20:01:39 2014 +0100
+
+    - dataset configuration encapsulated in the associative array "cfg".
+
+commit eb14d98
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Fri Jan 31 08:11:29 2014 +0100
+
+    - find_successfull_{runs,sets} functions were introduced.
+
+commit c3a1ce8
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Wed Jan 29 21:29:35 2014 +0100
+
+    - queue task of das.sh now accepts simulation lists.
+
+commit 135c754
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Tue Jan 28 22:12:03 2014 +0100
+
+    - high level experiment functions introduced.
+
+commit 2c36e70
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Tue Jan 28 21:50:37 2014 +0100
+
+    - 2 different Enkf inflation modes introduced.
+
+commit 5f3563a
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Fri Jan 24 20:26:00 2014 +0100
+
+    - Inflation is now done at every time step, following Sebastian sugestion.
+
+commit 54bc3f5
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Tue Jan 21 20:26:56 2014 +0100
+
+    - Enkf bug apparently fixed.
+
+commit c84d68f
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Sun Jan 19 18:56:29 2014 +0100
+
+    - verbose option added to scripts.
+
+commit 81b5eb0
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Sun Jan 19 13:20:12 2014 +0100
+
+    - Line_plot interface improved.
+
+commit d3a03cc
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Fri Jan 17 12:08:02 2014 +0100
+
+    - General error broadcasting greatly improved.
+
+commit 46856c3
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Wed Jan 15 20:35:00 2014 +0100
+
+    - Run_set convergence plots implemented.
+
+commit c320e0d
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Tue Jan 14 20:29:43 2014 +0100
+
+    - Convergence stats and plots added to run.sh.
+
+commit c4fb01e
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Tue Jan 14 11:59:11 2014 +0100
+
+    - just before removing .dat files from statistics.
+
+commit 32e05d7
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Mon Jan 13 17:57:55 2014 +0100
+
+    - run_set plotting parallelized.
+
+commit 3ccdfb5
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Sun Jan 12 16:40:03 2014 +0100
+
+    - log file system restructured.
+
+commit ac749d6
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Sat Jan 11 20:18:25 2014 +0100
+
+    - Test list computation time reduced in 1/3 by paralelization enhancement.
+
+commit 56255d2
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Sat Jan 11 16:56:37 2014 +0100
+
+    - run_set_diff refactured.
+
+commit 49eb50b
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Wed Jan 8 18:50:21 2014 +0100
+
+    - my_time profiling function added.
+
+commit 49cf7a7
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Tue Jan 7 20:29:06 2014 +0100
+
+    - bug related to empty config files was removed.
+
+commit 2c2f110
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Tue Jan 7 15:48:11 2014 +0100
+
+    - run_set_bunch routines fully functional again.
+
+commit b300c16
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Tue Jan 7 11:41:15 2014 +0100
+
+    - variance and spread reduction added to assi run stats.
+
+commit c0f7486
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Mon Jan 6 11:20:06 2014 +0000
+
+    - Augmentation "Augm2" (Taver + anomalies) introduced.
+
+commit 2acd49b
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Thu Jan 2 22:30:18 2014 +0000
+
+    - B-localization added.
+
+commit dfad9bd
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Thu Jan 2 14:10:55 2014 +0000
+
+    - my_cdo interface improved.
+
+commit d153027
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Mon Dec 30 14:44:12 2013 +0000
+
+    - Buffer zone added to simplify time loops.
+
+commit de102fe
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Mon Dec 30 02:15:36 2013 +0000
+
+    - Run stat Time dependence plots implemented.
+
+commit 9a2883e
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Sun Dec 29 13:27:29 2013 +0000
+
+    - main loop extended to allow arbitrary Taver_length.
+
+commit f180e36
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Sat Dec 28 01:55:19 2013 +0000
+
+    - run set stat netcdf creation routine is now an isolated ncl routine.
+
+commit ec8f898
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Fri Dec 27 01:01:56 2013 +0000
+
+    - Taver_mode parameter introduced.
+
+commit 91c8bd4
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Thu Dec 26 15:05:33 2013 +0000
+
+    - Plotting routines extended to 1-component models.
+
+commit 111dc31
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Wed Dec 25 21:54:32 2013 +0000
+
+    - L63 model introduced.
+
+commit 9d4fc05
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Mon Dec 23 13:05:58 2013 +0000
+
+    - run set dimension in now parsed by run set bunch.
+
+commit ae248d1
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Mon Dec 23 12:08:57 2013 +0000
+
+    - "self-appearing" run_set problem was fixed.
+
+commit 6e3d8af
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Mon Dec 23 00:42:18 2013 +0000
+
+    - run_set_bunch refactured.
+
+commit 69161db
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Sun Dec 22 12:26:25 2013 +0000
+
+    - run_set_diff refactured using run_diff function.
+
+commit 77e6fd5
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Sat Dec 21 11:41:04 2013 +0000
+
+    - run_diff routine added.
+
+commit dae2185
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Sat Dec 21 10:21:33 2013 +0000
+
+    - Multi-line plot function introduced.
+
+commit 3c344cd
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Tue Dec 17 16:56:56 2013 +0100
+
+    - Spread statitics finally well implemented.
+
+commit 5ed3783
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Mon Dec 16 21:04:16 2013 +0000
+
+    - Progress report improved.
+
+commit ea1312f
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Mon Dec 16 19:51:17 2013 +0000
+
+    - Whole code strongly refactured (no netcdf io,cleaner strcture).
+
+commit 7ce9fb5
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Thu Dec 12 23:26:37 2013 +0100
+
+    - the code is no longer dependent on python. ncl used instead.
+
+commit 8f7706e
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Thu Dec 12 18:22:43 2013 +0100
+
+    - line plot for 2 parameter scalars was added.
+
+commit 9cb2408
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Wed Dec 11 21:18:11 2013 +0100
+
+    mend
+
+commit 7633286
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Wed Dec 11 21:15:26 2013 +0100
+
+    - EnKf filter added.
+
+commit 6b9d416
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Wed Dec 11 11:16:54 2013 +0100
+
+    - Compilation with ifort activated.
+
+commit 2d2e066
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Sat Dec 7 15:44:23 2013 +0100
+
+    - run, run_set, run_set_diff and run_set_bunch interfaces homogenized.
+
+commit 03c7652
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Fri Dec 6 21:17:01 2013 +0100
+
+    - plot_array function further improved.
+
+commit dd7ff28
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Fri Dec 6 18:00:41 2013 +0100
+
+    - Improved plot_array function included.
+
+commit 949ba64
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Fri Dec 6 10:41:17 2013 +0000
+
+    - ensemble_run.f90 splitted into ensemble_{free,assi}_run.90.
+
+commit 83772d0
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Thu Dec 5 20:08:44 2013 +0100
+
+    - dependency checking function was added.
+
+commit 12d7fea
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Thu Dec 5 18:07:34 2013 +0100
+
+    - getopt version test added.
+
+commit f1d1006
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Wed Dec 4 17:03:55 2013 +0100
+
+    - run.sh structure updated. run_stats.sh was absorbed.
+
+commit 9099ab2
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Tue Dec 3 20:20:04 2013 +0100
+
+    - observations are now directly written in netcdf.
+
+commit 39afb6a
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Tue Dec 3 16:45:02 2013 +0100
+
+    - task "queue" added to das.sh.
+
+commit 75b9f1d
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Mon Dec 2 21:37:45 2013 +0100
+
+    - run_set report improved.
+
+commit 001c523
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Sun Dec 1 18:47:13 2013 +0100
+
+    - das_test and das_launch merged into das.sh.
+
+commit db56be4
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Sun Dec 1 01:15:25 2013 +0100
+
+    - table of plots for run_set_bunch was added.
+
+commit 1975c87
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Fri Nov 29 20:19:25 2013 +0100
+
+    - run_set_bunch now supports 2D spans.
+
+commit 7c87455
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Fri Nov 29 15:16:25 2013 +0100
+
+    - scripts now use "getopt" instead of "getopts", to allow long options.
+
+commit 356b3f9
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Thu Nov 28 11:24:58 2013 +0100
+
+    - run_set_pair became run_set_bunch.
+
+commit 322cb03
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Wed Nov 27 12:06:54 2013 +0100
+
+    - L63_2s model was introduced.
+
+commit 88b71c6
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Tue Nov 26 17:45:41 2013 +0100
+
+    - L96_2s model updated to new structure.
+
+commit 6c1159d
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Fri Nov 22 18:08:44 2013 +0100
+
+    - run_set script redesigned. Now it comprises run_set_stat.
+
+commit db6956e
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Fri Nov 22 16:37:21 2013 +0100
+
+    - test_list structure greatly improved.
+
+commit bf13701
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Fri Nov 22 11:16:28 2013 +0100
+
+    - Report section title is now created only if section is not empty.
+
+commit c64e963
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Thu Nov 21 21:39:15 2013 +0100
+
+    - VS-lite-like observation operators (vsl0,vsl1) were implemented.
+
+commit cd141d2
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Thu Nov 21 20:55:33 2013 +0100
+
+    - main scripts are now able to handle relative paths.
+
+commit c079dbb
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Thu Nov 21 12:27:28 2013 +0100
+
+    - copy_code function is now copying only neccesary files.
+
+commit 8ab8f5c
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Wed Nov 20 19:37:37 2013 +0100
+
+    - Run_set does not crash is a child process does. Stats get NaN fillvalue for crashing processes.
+
+commit 8b06e8a
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Sun Nov 17 22:31:12 2013 +0100
+
+    - NCL-bash overflow quirk understood and hopefully completely fixed.
+
+commit 982c45d
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Sun Nov 17 11:25:12 2013 +0100
+
+    - das_compute and das_lauch_copy merged into das_launch.
+
+commit bd9e438
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Sat Nov 16 20:45:28 2013 +0100
+
+    - run_assi_set_pair.sh introduced.
+
+commit 4e4340c
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Sat Nov 16 19:12:30 2013 +0100
+
+    - run_set_diff plotting is now done with run_set_stats.
+
+commit 23538ad
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Fri Nov 15 20:17:53 2013 +0100
+
+    - test_list.sh introducced.
+
+commit 4e901ba
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Fri Nov 15 18:57:01 2013 +0100
+
+    - run_free and run_assi were merged into run.sh script.
+
+commit 2b52b0e
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Fri Nov 15 17:24:59 2013 +0100
+
+    - run_set_diff function added.
+
+commit fe3fdd4
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Fri Nov 15 13:51:15 2013 +0100
+
+    - run_assi dataset dependencies are now relative.
+
+commit 5fa9909
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Fri Nov 15 00:20:55 2013 +0100
+
+    - common_run_set library created.
+
+commit 543b22b
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Wed Nov 13 20:16:25 2013 +0100
+
+    - stat contour plots now show all components in the same plot.
+
+commit 43f15cc
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Wed Nov 13 17:35:09 2013 +0100
+
+    - Plots and Report for 1D run sets was added.
+
+commit cd09dd8
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Wed Nov 13 14:31:45 2013 +0100
+
+    - Netcdf files' structure greatly standardized.
+
+commit 8fade27
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Tue Nov 12 12:49:33 2013 +0100
+
+    - statistics of *Tanom* data are now calculated.
+
+commit d6469a6
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Sun Nov 10 20:22:32 2013 +0000
+
+    - 2D run set stats plot implemented.
+
+commit d3cfa8d
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Sun Nov 10 20:21:30 2013 +0000
+
+    - latex based results report function added.
+
+commit 61df9e2
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Sun Nov 10 16:22:21 2013 +0000
+
+    - Child process errors now make crash their parent process.
+
+commit c9072ac
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Sat Nov 9 15:58:57 2013 +0000
+
+    - longname attribute added to netcdfs.
+
+commit e76fd92
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Sat Nov 9 12:49:20 2013 +0000
+
+    - L96_2s_mix coupling parameter k renamed as "link".
+
+commit f79e6b4
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Fri Nov 8 21:34:34 2013 +0000
+
+    - Compilation flags to catch Infs were added.
+
+commit d20a734
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Thu Nov 7 18:19:34 2013 +0100
+
+    - Bug in L96_2s_mix obs operator was fixed.
+
+commit fe5f060
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Thu Nov 7 11:18:17 2013 +0100
+
+    - obs operator section added to L96_2s_mix model core.
+
+commit 6c43b5f
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Wed Nov 6 15:57:46 2013 +0100
+
+    - storage saving mechanism added.
+
+commit ba14644
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Wed Nov 6 14:19:06 2013 +0100
+
+    - simple computing time estimator was implemented.
+
+commit 3821cec
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Wed Nov 6 11:03:13 2013 +0100
+
+    - Plot and stat routines were splitted.
+
+commit 0ff7ebd
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Tue Nov 5 21:35:09 2013 +0100
+
+    - Detailed Nature run is now written in netcdf.
+
+commit 6f073d2
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Tue Nov 5 20:14:13 2013 +0100
+
+    - Fortran based ensemble diagnostics were completely disabled.
+
+commit 4e26cd8
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Tue Nov 5 18:02:35 2013 +0100
+
+    - Netcdf I/O routines are now model independent.
+
+commit 8be5586
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Tue Nov 5 16:19:10 2013 +0100
+
+    - Netcdf I/O fortran routines now support 2-component models.
+
+commit 2dce399
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Tue Nov 5 15:39:40 2013 +0100
+
+    - Evaluation routines now support 2-component models.
+
+commit 549fa86
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Mon Nov 4 18:52:43 2013 +0000
+
+    - NCL based statistics now considered spinup period.
+
+commit a440854
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Mon Nov 4 01:02:35 2013 +0000
+
+    - run_assi_set and run_free_set were merged into run_set.sh.
+
+commit 58dd75a
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Sat Nov 2 23:37:18 2013 +0000
+
+    - run_assi_set structure updated. It now supports 0,1 and 2D run_free_sets.
+
+commit c57f255
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Sat Nov 2 01:17:27 2013 +0000
+
+    - run_free_set.sh now supports 2D studies.
+
+commit 7aa1f11
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Fri Nov 1 15:55:48 2013 +0100
+
+    - sampling, nature and ens_free runs merged into run_free.sh so as to simplify interface.
+
+commit 0b56e13
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Fri Nov 1 15:16:22 2013 +0100
+
+    - 2D sensitivity study script implemented.
+
+commit d8cd7e3
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Wed Oct 30 20:40:20 2013 +0100
+
+    - nature and free ensemble runs are now created by free_run.sh so as to simplify scripting.
+
+commit f447754
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Tue Oct 29 22:35:41 2013 +0000
+
+    - *_run_vs_par_plot scripts merged into run_vs_par_plot.
+
+commit ede97f3
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Mon Oct 28 22:08:29 2013 +0000
+
+    - Doxygen documentation added.
+
+commit def46b1
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Mon Oct 28 20:02:14 2013 +0000
+
+    - *_vs_cycle_length scripts extended to *_vs_par form.
+    - sensitivity study dependencies should be established !!
+
+commit c9c011b
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Mon Oct 28 15:38:29 2013 +0000
+
+    - RMSSS is now calculated using NCL.
+
+commit 69f4a7c
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Mon Oct 28 13:46:46 2013 +0000
+
+    - Default observability reduced to 1/2.
+    - All Statistics are now done with NCL.
+    - ens_free*.sh and ens_assi*.sh scripts were merged into ensemble*.sh.
+
+commit 4083ce1
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Sat Oct 26 22:16:01 2013 +0100
+
+    - ensemble_run output is now written directly in netcdf format.
+
+commit a7e86aa
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Sat Oct 26 17:10:25 2013 +0100
+
+    - das_compute.sh now traps SIGHUP so nohup is no longer needed.
+
+commit a83394d
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Sat Oct 26 16:31:21 2013 +0100
+
+    - 2 renamings performed: updated_ens->update_mode, Taver->Hakim.
+
+commit 4f471b4
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Sat Oct 26 13:53:22 2013 +0100
+
+    - NCL error catching mechanism was introduced.
+    - das_plot redesigned. each script has its own plotting script.
+
+commit 3297964
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Thu Oct 24 16:55:32 2013 +0200
+
+    - Cycle_lenght has now actual time units.
+    - das_make_all scripts supports blas and netcdf in tux04 and negrito.
+
+commit a9fb408
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Thu Oct 24 14:56:59 2013 +0200
+
+    - Real range generation problem solved using python.
+
+commit 8bdadad
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Wed Oct 23 22:37:19 2013 +0100
+
+    - Nature state variance vs Taver_steps plot was implemented.
+
+commit aa3f319
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Tue Oct 22 10:08:10 2013 +0200
+
+    - First round of experiments was acomplished. Code appears stable :D
+
+commit ed2567b
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Sun Oct 20 16:03:00 2013 +0100
+
+    - RMSSS Calculation was implemented.
+
+commit 1e34703
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Sun Oct 20 13:50:13 2013 +0100
+
+    - {nature,ens_free,ens_assi}_vs_cycle_length scripts implemented.
+
+commit 3b3e594
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Sat Oct 19 01:18:51 2013 +0100
+
+    - spinup script was improved an renamed as sampling.
+    - Sensitivity study script "ens_assi_run_vs_par.sh" implemented.
+
+commit ed26dca
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Thu Oct 17 17:53:19 2013 +0100
+
+    - L96_pf (periodic forcing) was implemented.
+    - L96 model was disabled. L96_pf reduces to it for F_ampl=0.
+    - High level Script Interface greatly improved.
+
+commit 77536e7
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Thu Oct 17 16:43:15 2013 +0100
+
+    q
+
+commit 4dcdbff
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Thu Oct 17 14:29:56 2013 +0100
+
+    - rk4 routine was extended to non-autonomous systems.
+    - common_particle module was splitted into common_dyn_sytem
+      and common_trajectory modules.
+
+commit 5da841e
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Wed Oct 16 16:55:07 2013 +0200
+
+    - Time augmented filtering with adapt. localization works now.
+    - Routine ensemble_assi_run_vs_par was implemented. So far tested with Taver_steps.
+
+commit 31feac7
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Tue Oct 15 13:15:26 2013 +0200
+
+    - common_obs_operator module was created.
+
+commit e315927
+Author: Walter Acevedo <acevedo@tux04.met.fu-berlin.de>
+Date:   Tue Oct 15 11:48:40 2013 +0200
+
+    - tada exp module was cleaned.
+
+commit e977dc7
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Mon Oct 14 23:59:05 2013 +0100
+
+    - Time augmented filtering was fixed :D
+
+commit ade1c61
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Mon Oct 14 10:21:09 2013 +0100
+
+    - nature_obs is now a procedure of tada_exp module.
+    - Time augmented filtering is still having problems :/
+
+commit 1e0f951
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Sun Oct 13 00:05:03 2013 +0100
+
+    - Component statistcs storage and calculation were further systematized.
+
+commit 17c10aa
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Fri Oct 11 23:55:44 2013 +0100
+
+    - Stats structure was introduced.
+    - statistics calculation by component implemented.
+    - time average filtering encapsulated in tada_exp module.
+
+commit 1aa9e55
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Fri Oct 11 00:51:58 2013 +0100
+
+    - LETKF filtering was encapsulated into filter module.
+
+commit 38465e8
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Thu Oct 10 13:31:39 2013 +0100
+
+    - Lorenz 96 2-scale model core was added.
+    - Slow-fast Lorenz96 models mixture core was added.
+    - Ensemble run program currently only tested for Lorenz 96 model.
+
+commit adb2d18
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Sun Oct 6 22:18:45 2013 +0100
+
+    - All the calculations are now done with 8 byte variables.
+    - Model dependent code was completely isolated.
+
+commit 66480c4
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Sun Oct 6 11:44:29 2013 +0100
+
+    - Time averaging introduced. Preliminaty tests showed it stable :D
+
+commit 3234be5
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Sat Oct 5 14:26:38 2013 +0100
+
+    - Observation error is now generated in terms of SNR.
+    - Particle and ensemble propagation is now encapsulated into modules.
+    - Fortran modules and bash libraries were splitted into common and model classes.
+
+commit 97ba884
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Thu Oct 3 18:23:09 2013 +0100
+
+    - 4D functionality succesfully removed :D
+    - Observation matrix was removed. A more flexible functional
+      observation operator was introduced.
+
+commit a2eb6f5
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Thu Oct 3 15:44:29 2013 +0100
+
+    - Stable code stage, just before starting 4D functionality removal
+
+commit 38881a6
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Thu Oct 3 14:46:13 2013 +0100
+
+    - Fortran code compilation was sistematized and centralized.
+
+commit e22bb32
+Author: walter acevedo <jowa@negrito.fritz.box>
+Date:   Thu Oct 3 10:47:23 2013 +0100
+
+    At this code's stage, Lorenz 96 Letkf programs were integrated by a commom launcher
+    (das_test.sh where the common parameters were dictated) and a the module das_tools.f90.
+    Scripts were brought to BASH and a common layout was established using the bash function
+    library das_tools.sh. Some new plotting routines were added, which use CDO and NCL.

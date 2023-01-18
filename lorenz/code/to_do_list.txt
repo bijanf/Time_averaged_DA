@@ -1,0 +1,56 @@
+/*! \page devel To Do List
+Issues
+- Currently Only L63_2s and L96_2s models structure is up to date.
+- detailed stats make the code unstable or there is something strange in calc03 and 04
+- code copies not automatically erased from data archive. Remove after Plotting??
+
+Done
+
+Ongoing
+
+Urgent
+- Fix reports
+- add plotting and documentation to test
+- Disable unused models: L96_2s_pf, L96_2s_mix
+- add parset to report name
+
+Important
+- further dataset thinning
+  - symbolic links in runs
+  - crashing runs leave too much garbage: (i) error messages in logs and (ii) raw_data
+  - only one default_config.sh and model_core.f90 per run_set_bunch are enough
+
+Important but time consuming
+- allow recalculation of a crashed run
+- clean enviroment before running !!!
+- why replot fix report?? plots need some time to appear??.
+- add restat option
+- get_config_file "config/successful_runs.cfg" in run set tools should be smarter
+
+- Find apropriate infl scaling?? (sqrt-step-infl not elegant at all)
+- add dataset analysis tasking (plot, docu and view) to das.sh??
+  or create dataset.sh??
+- add running dataset file flag?? would require signal catching mechanism
+- set_par info is not in run_set_bunch config
+  - add it to config? hmm no backwards compatible
+- add -recursive flag??
+- erase code copies after succesfull plotting
+- reactivate Letkf (write letkf inflation factor and check it)
+- reactivate diffs ( implement stat_ and plot_run_set_diffs for run_set_bunch???)
+- move stat gathering to plotting phase so as to isolate ncl dependencies??? not needed now
+- improve sampling and initialization (around nature run) 
+- allow one run_set from a bunch to be relaunch  
+- parse model-obs operator combination
+- solve warnings in netlib.f90
+- unify my_* commands 
+- all waits should be strict in principle??
+- speed up test removal
+- nc is not a good variable name for model component size.
+
+Interesting but not compelling
+- Implement sebastian model (rk4 seems not to be applicable)
+- separate free/assi integer/real parameters elegantly 
+- make funct_opening and _closing dependent on debug or verbosity.
+- make random sequences reproducible?
+- test forcing consistency (only for non-autonomous models:lorenz_1s_pf)
+*/

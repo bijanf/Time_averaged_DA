@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+#=======================================================================
+#> @brief Compiles calculate_variance.f90
+#=======================================================================
+calculate_variance_make()
+{
+#    funct_opening
+    HERE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+    cd $HERE
+    
+    case "$(hostname)" in
+    "tux04")
+        case "$tux04_compiler" in
+        "gfortran")
+            build_program "calculate_variance" "gfortran" "-O3 -fconvert=big-endian"
+            ;;
+#        "ifort")
+#            bash make_generate_obs.sh "ifort" "-fast -O3 -convert big_endian"
+#            ;;
+        *)
+            echo "Unknown compiler $tux04_compiler"
+            exit 1;;
+        esac
+        ;;
+#    "a41")
+#        bash make_generate_obs.sh "xlf"      "-O2"
+#        ;;
+    *)
+        error_exit "unknown machine";;
+    esac
+#    funct_closing
+}
+
+set -o errexit # non-zero return values make the script halt
+set -o nounset # Unset variable expansion gives error
+
+# Current hardwiring
+tux04_compiler="gfortran"
+calculate_variance_make
+
+#calculate_variance_make $@
+exit $?
